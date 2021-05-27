@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                         "%1$, .2f miles", distance);
                 distanceView.setText(distanceStr);
                 //значение TextView обновляется каждую секунду
-                handler.postDelayed(this, 10000);
+                handler.postDelayed(this, 5000);
             }
         });
     }
