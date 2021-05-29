@@ -97,6 +97,6 @@ public class OdometerService extends Service {
     }
 
     public double getDistance(){
-        return random.nextDouble();
+        return this.distanceInMeters;
     }
 }
