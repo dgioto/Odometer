@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     distance = odometer.getDistance();
                 }
                 String distanceStr = String.format(Locale.getDefault(),
-                        "%1$, .2f miles", distance);
+                        "%1$, .2f meters", distance);
                 distanceView.setText(distanceStr);
                 //значение TextView обновляется каждую секунду
                 handler.postDelayed(this, 5000);
