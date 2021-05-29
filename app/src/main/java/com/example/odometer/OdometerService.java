@@ -29,6 +29,11 @@ public class OdometerService extends Service {
     //строка разрешения добавляется в виде константы
     public  static final  String PERMISSION_STRING = Manifest.permission.ACCESS_FINE_LOCATION;
 
+    //расстояние и последнее местонахождение пользователя хранится в статичесикх переменных,
+    // что бы их значения сохранялись при уничтожении службы
+    private static double distanceInMeters;
+    private static Location lastLocation = null;
+
     public OdometerService() {
     }
 
@@ -46,7 +51,13 @@ public class OdometerService extends Service {
             @Override
             //Параметр Location описывает текущее местоположение
             public void onLocationChanged(@NonNull Location location) {
-
+                //задаем исходное значение местонахождения пользователя
+                if (lastLocation == null){
+                    lastLocation = location;
+                }
+                distanceInMeters += location.distanceTo(lastLocation);
+                //обновляем пройденное расстояние и последнее местонахождение пользователя
+                lastLocation = location;
             }
 
             @Override
