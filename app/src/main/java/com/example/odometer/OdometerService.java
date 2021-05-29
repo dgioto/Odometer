@@ -1,14 +1,20 @@
 package com.example.odometer;
 
+import android.Manifest;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import java.util.Random;
 
@@ -18,6 +24,10 @@ public class OdometerService extends Service {
     private final Random random = new Random();
 
     private LocationListener listener;
+
+    private LocationManager locManager;
+    //строка разрешения добавляется в виде константы
+    public  static final  String PERMISSION_STRING = Manifest.permission.ACCESS_FINE_LOCATION;
 
     public OdometerService() {
     }
@@ -54,6 +64,20 @@ public class OdometerService extends Service {
 
             }
         };
+
+        //получаем объект LocationManager
+        locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        //проверить наличее разрешения
+        if (ContextCompat.checkSelfPermission(this, PERMISSION_STRING)
+                == PackageManager.PERMISSION_GRANTED) {
+            //получить самый точный провайдер
+            String provider = locManager.getBestProvider(new Criteria(), true);
+            if (provider != null){
+                //запросить обновления от провайдера данных местонахождения
+                locManager.requestLocationUpdates(provider, 100, 1, listener);
+            }
+        }
+
     }
 
     @Override
