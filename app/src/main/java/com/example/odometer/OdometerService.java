@@ -21,7 +21,6 @@ import java.util.Random;
 public class OdometerService extends Service {
 
     private final IBinder binder = new OdometerBinder();
-    private final Random random = new Random();
 
     private LocationListener listener;
 
@@ -94,6 +93,20 @@ public class OdometerService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return binder;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (locManager != null && listener != null){
+            if (ContextCompat.checkSelfPermission(this, PERMISSION_STRING)
+                    == PackageManager.PERMISSION_GRANTED){
+                //прекратить получение обновлений, если имеется разрешение на их удаление
+                locManager.removeUpdates(listener);
+            }
+            locManager = null;
+            listener = null;
+        }
     }
 
     public double getDistance(){
