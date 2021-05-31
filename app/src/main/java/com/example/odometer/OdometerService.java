@@ -21,20 +21,14 @@ import java.util.Random;
 public class OdometerService extends Service {
 
     private final IBinder binder = new OdometerBinder();
-
     private LocationListener listener;
-
     private LocationManager locManager;
-    //строка разрешения добавляется в виде константы
-    public  static final  String PERMISSION_STRING = Manifest.permission.ACCESS_FINE_LOCATION;
-
     //расстояние и последнее местонахождение пользователя хранится в статичесикх переменных,
     // что бы их значения сохранялись при уничтожении службы
     private static double distanceInMeters;
     private static Location lastLocation = null;
-
-    public OdometerService() {
-    }
+    //строка разрешения добавляется в виде константы
+    public  static final  String PERMISSION_STRING = Manifest.permission.ACCESS_FINE_LOCATION;
 
     public class OdometerBinder extends Binder{
         OdometerService getOdometer(){
@@ -84,7 +78,7 @@ public class OdometerService extends Service {
             String provider = locManager.getBestProvider(new Criteria(), true);
             if (provider != null){
                 //запросить обновления от провайдера данных местонахождения
-                locManager.requestLocationUpdates(provider, 100, 1, listener);
+                locManager.requestLocationUpdates(provider, 1000, 1, listener);
             }
         }
 

@@ -1,11 +1,18 @@
 package com.example.odometer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -18,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     //переменные для сохранения ссылки на службу и признака связывания с активностью
     private OdometerService odometer;
     private boolean bound = false;
+
+    private final int PERMISSION_REQUEST_CODE = 698;
+    private final int NOTIFICATION_ID = 423;
 
     //Создаем объект ServiceConnection
     private ServiceConnection connection = new ServiceConnection() {
@@ -47,14 +57,63 @@ public class MainActivity extends AppCompatActivity {
         displayDistance();
     }
 
+    //если у пользователя запрашивалось разрешение во время выполнения,
+    //проверить результат
+    @Override
+    public void onRequestPermissionsResult(int requestCode
+            , String[] permissions
+            , int[] grantResults) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent = new Intent(this, OdometerService.class);
+                    //выполнить связывание со службой если пользователь предоставил разрешение
+                    bindService(intent, connection, Context.BIND_AUTO_CREATE);
+                } else {
+                    //создание построителя уведомления
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                            .setSmallIcon(android.R.drawable.ic_menu_compass)
+                            .setContentTitle(getResources().getString(R.string.app_name))
+                            .setContentText(getResources().getString(R.string.permission_denied))
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                            .setAutoCancel(true);
+
+                    //создание действия
+                    Intent actionIntent = new Intent(this, MainActivity.class);
+                    PendingIntent actionPendingIntent = PendingIntent.getActivity(this, 0,
+                            actionIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+                    builder.setContentIntent(actionPendingIntent);
+
+                    //вфдача уведомления
+                    NotificationManager notificationManager =
+                            (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                    notificationManager.notify(NOTIFICATION_ID, builder.build());
+                }
+            }
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
-        //Интент, отправленный OdometerService
-        Intent intent = new Intent(this, OdometerService.class);
-        //connection является объектом ServiceConnection
-        //Метод bindService() использует интент и соединение со службой для связывания активности со службой
-        bindService(intent, connection, Context.BIND_AUTO_CREATE);
+        if (ContextCompat.checkSelfPermission(this,
+                OdometerService.PERMISSION_STRING)
+                != PackageManager.PERMISSION_GRANTED){
+            //Запросить разрешение ACCESS_FINE_LOCATION, если оно не было дано ранее
+            ActivityCompat.requestPermissions(this,
+                    new String[]{OdometerService.PERMISSION_STRING},
+                    PERMISSION_REQUEST_CODE);
+        } else {
+            //Интент, отправленный OdometerService
+            Intent intent = new Intent(this, OdometerService.class);
+            //connection является объектом ServiceConnection
+            //Метод bindService() использует интент и соединение со службой для связывания активности со службой
+            bindService(intent, connection, Context.BIND_AUTO_CREATE);
+        }
     }
 
     @Override
@@ -83,10 +142,10 @@ public class MainActivity extends AppCompatActivity {
                     distance = odometer.getDistance();
                 }
                 String distanceStr = String.format(Locale.getDefault(),
-                        "%1$, .2f meters", distance);
+                        "%1$,.2f meters", distance);
                 distanceView.setText(distanceStr);
                 //значение TextView обновляется каждую секунду
-                handler.postDelayed(this, 5000);
+                handler.postDelayed(this, 1000);
             }
         });
     }
