@@ -78,7 +78,7 @@ public class OdometerService extends Service {
             String provider = locManager.getBestProvider(new Criteria(), true);
             if (provider != null){
                 //запросить обновления от провайдера данных местонахождения
-                locManager.requestLocationUpdates(provider, 1000, 1, listener);
+                locManager.requestLocationUpdates(provider, 500, 1, listener);
             }
         }
 
