@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private final int NOTIFICATION_ID = 423;
 
     //Создаем объект ServiceConnection
-    private ServiceConnection connection = new ServiceConnection() {
+    private final ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder binder) {
             OdometerService.OdometerBinder odometerBinder =
@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
     //проверить результат
     @Override
     public void onRequestPermissionsResult(int requestCode
-            , String[] permissions
-            , int[] grantResults) {
+            , @NonNull String[] permissions
+            , @NonNull int[] grantResults) {
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 

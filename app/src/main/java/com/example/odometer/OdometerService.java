@@ -16,15 +16,14 @@ import android.os.IBinder;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
-import java.util.Random;
 
 public class OdometerService extends Service {
 
     private final IBinder binder = new OdometerBinder();
     private LocationListener listener;
     private LocationManager locManager;
-    //расстояние и последнее местонахождение пользователя хранится в статичесикх переменных,
-    // что бы их значения сохранялись при уничтожении службы
+    //расстояние и последнее местонахождение пользователя хранится в статических переменных,
+    //что бы их значения сохранялись при уничтожении службы
     private static double distanceInMeters;
     private static Location lastLocation = null;
     //строка разрешения добавляется в виде константы
