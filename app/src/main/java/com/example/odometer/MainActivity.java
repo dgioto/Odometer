@@ -16,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -48,6 +49,22 @@ public class MainActivity extends AppCompatActivity {
             bound = false;
         }
     };
+
+    public void onClickStart(View view){
+
+    }
+
+    public void onClickPause(View view){
+
+    }
+
+    public void onClickStop(View view){
+
+    }
+
+    public void onClickExit(View view){
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
