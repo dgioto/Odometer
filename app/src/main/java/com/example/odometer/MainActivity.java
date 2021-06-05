@@ -23,10 +23,10 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    //переменные для сохранения ссылки на службу и признака связывания с активностью
+    //сохранение ссылки на службу
     private OdometerService odometer;
+    //признак связывания сс активностью
     private boolean bound = false;
-
     private final int PERMISSION_REQUEST_CODE = 698;
     private final int NOTIFICATION_ID = 423;
 
@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
         }
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            //переменно  bound присваивается значение false, так как активность MainActivity
-            // уже не связана с OdometerService
+            /* переменной bound присваивается значение false, так как активность MainActivity
+            уже не связана с OdometerService */
             bound = false;
         }
     };
