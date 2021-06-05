@@ -30,8 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private final int PERMISSION_REQUEST_CODE = 698;
     private final int NOTIFICATION_ID = 423;
 
-
+    //STOPWATCH
+    //количество прошедших секунд
     private int seconds = 0;
+    //флаг работы секундомера
     private boolean running;
     //переменная для проверки, работал ли секундомер перед вызовом метода onStop()
     private  boolean wasRunning;
@@ -47,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             //Активность связывается со службой, переменной bound присваивается true
             bound = true;
         }
-
         @Override
         public void onServiceDisconnected(ComponentName name) {
             //переменно  bound присваивается значение false, так как активность MainActivity
@@ -55,6 +56,24 @@ public class MainActivity extends AppCompatActivity {
             bound = false;
         }
     };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        displayDistance();
+
+        //STOPWATCH
+        //сохраняем переменные в объект Bundle
+        if (savedInstanceState != null){
+            seconds = savedInstanceState.getInt("seconds");
+            running = savedInstanceState.getBoolean("running");
+            wasRunning = savedInstanceState.getBoolean("wasRunning");
+        }
+        //обнавляем показания таймера
+        runTimer();
+    }
 
     public void onClickStart(View view){
         running = true;
@@ -73,26 +92,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //STOPWATCH
+    //сохранить состояние секундомера, если он готовится к уничтожению
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        displayDistance();
-
-        //сохраняем переменные в объект Bundle
-        if (savedInstanceState != null){
-            seconds = savedInstanceState.getInt("seconds");
-            running = savedInstanceState.getBoolean("running");
-            wasRunning = savedInstanceState.getBoolean("wasRunning");
-        }
-
-        //обнавляем показания таймера
-        runTimer();
+    protected void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt("seconds", seconds);
+        savedInstanceState.putBoolean("running", running);
+        savedInstanceState.putBoolean("wasRunning", wasRunning);
     }
 
-    //если у пользователя запрашивалось разрешение во время выполнения,
-    //проверить результат
+    //если у пользователя запрашивалось разрешение во время выполнения, проверить результат
     @Override
     public void onRequestPermissionsResult(int requestCode
             , @NonNull String[] permissions
@@ -122,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                             actionIntent, PendingIntent.FLAG_CANCEL_CURRENT);
                     builder.setContentIntent(actionPendingIntent);
 
-                    //вфдача уведомления
+                    //выдача уведомления
                     NotificationManager notificationManager =
                             (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                     notificationManager.notify(NOTIFICATION_ID, builder.build());
@@ -148,25 +158,6 @@ public class MainActivity extends AppCompatActivity {
             //Метод bindService() использует интент и соединение со службой для связывания активности со службой
             bindService(intent, connection, Context.BIND_AUTO_CREATE);
         }
-    }
-
-    // переносим код в метод onPause() из onStop(), что бы секундомер приостановливал
-    // работу во время сварачивания приложения и приостановки
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //сохранить информацию о томб работал ли секундомер на момент вызова метода onStop()
-        wasRunning = running;
-        running = false;
-    }
-
-    // переносим код в метод onResume() из onStart(), что бы секундомер приостановливал
-    // работу во время сварачивания приложения и приостановки
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //если секундомер работал, то отсчет времени возобновляется
-        if (wasRunning) running = true;
     }
 
     @Override
@@ -195,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                     distance = odometer.getDistance();
                 }
                 String distanceStr = String.format(Locale.getDefault(),
-                        "%1$,.1f метров", distance);
+                        "%1$,.0f метров", distance);
                 distanceView.setText(distanceStr);
                 //значение TextView обновляется каждую секунду
                 handler.postDelayed(this, 1000);
@@ -203,16 +194,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //сохранить состояние секундомера, если он готовится к уничтожению
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putInt("seconds", seconds);
-        savedInstanceState.putBoolean("running", running);
-        savedInstanceState.putBoolean("wasRunning", wasRunning);
-    }
-
-    //обновление показаний таймера
+    /*
+    STOPWATCH
+    обновление показаний таймера
+     */
     private void runTimer(){
         final TextView timeView = (TextView) findViewById(R.id.time);
         //объект для выполнения кода в другом программном потоке
