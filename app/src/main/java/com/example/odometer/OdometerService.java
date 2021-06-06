@@ -53,19 +53,13 @@ public class OdometerService extends Service {
             }
 
             @Override
-            public void onProviderDisabled(@NonNull String provider) {
-
-            }
+            public void onProviderDisabled(@NonNull String provider) {    }
 
             @Override
-            public void onProviderEnabled(@NonNull String provider) {
-
-            }
+            public void onProviderEnabled(@NonNull String provider) {    }
 
             @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
+            public void onStatusChanged(String provider, int status, Bundle extras) {   }
         };
 
         //получаем объект LocationManager
@@ -80,7 +74,6 @@ public class OdometerService extends Service {
                 locManager.requestLocationUpdates(provider, 1000, 1, listener);
             }
         }
-
     }
 
     @Override

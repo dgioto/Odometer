@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private int seconds = 0;
     //флаг работы секундомера
     private boolean running;
-    //переменная для проверки, работал ли секундомер перед вызовом метода onStop()
-    private  boolean wasRunning;
 
     //Создаем объект ServiceConnection
     private final ServiceConnection connection = new ServiceConnection() {
@@ -69,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null){
             seconds = savedInstanceState.getInt("seconds");
             running = savedInstanceState.getBoolean("running");
-            wasRunning = savedInstanceState.getBoolean("wasRunning");
         }
         //обнавляем показания таймера
         runTimer();
@@ -89,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickExit(View view){
-
+        finish();
+        System.exit(1);
     }
 
     //STOPWATCH
@@ -99,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putInt("seconds", seconds);
         savedInstanceState.putBoolean("running", running);
-        savedInstanceState.putBoolean("wasRunning", wasRunning);
     }
 
     //если у пользователя запрашивалось разрешение во время выполнения, проверить результат
@@ -186,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
                     distance = odometer.getDistance();
                 }
                 String distanceStr = String.format(Locale.getDefault(),
-                        "%1$,.0f метров", distance);
+                        "%1$,.1f метров", distance);
                 distanceView.setText(distanceStr);
                 //значение TextView обновляется каждую секунду
                 handler.postDelayed(this, 1000);
