@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        displayDistance();
+
 
         //STOPWATCH
         //сохраняем переменные в объект Bundle
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickStart(View view){
+        displayDistance();
         running = true;
     }
 
