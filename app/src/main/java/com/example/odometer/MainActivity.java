@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     //сохранение ссылки на службу
     private OdometerService odometer;
-    //признак связывания сс активностью
+    double distance = 0.0;
+    //признак связывания с активностью
     private boolean bound = false;
     private final int PERMISSION_REQUEST_CODE = 698;
     private final int NOTIFICATION_ID = 423;
@@ -60,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         //STOPWATCH
         //сохраняем переменные в объект Bundle
         if (savedInstanceState != null){
@@ -73,15 +72,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickStart(View view){
+        bound = true;
         displayDistance();
         running = true;
     }
 
     public void onClickStop(View view){
+        bound = false;
         running = false;
     }
 
     public void onClickReset(View view){
+        bound = false;
+        distance = 0.0;
+
         running = false;
         seconds = 0;
     }
@@ -161,12 +165,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if (bound){
-            //ИСпользет объект ServiceConnection для отмены связывания со службой
-            unbindService(connection);
-            //при разрыве связи со службой присваивается false
-            bound = false;
-        }
+//        if (bound){
+//            //ИСпользет объект ServiceConnection для отмены связывания со службой
+//            unbindService(connection);
+//            //при разрыве связи со службой присваивается false
+//            bound = false;
+//        }
     }
 
     //будет обновляться каждую секунду, а надпись в MainActivity будет обновляться полученным значением
@@ -177,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                double distance = 0.0;
+//                double distance = 0.0;
                 if (bound && odometer != null){
                     //Если имеется ссылка на OdometerService и связывание со службой было выполненоб
                     // вызвать getDistance()
