@@ -71,17 +71,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickStart(View view){
+        odometer.resetDistance();
         bound = true;
         displayDistance();
+
         running = true;
     }
 
     public void onClickStop(View view){
         bound = false;
+
         running = false;
     }
 
     public void onClickReset(View view){
+        odometer.resetDistance();
         bound = false;
 
         running = false;
@@ -181,8 +185,8 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 double distance = 0.0;
                 if (bound && odometer != null){
-                    //Если имеется ссылка на OdometerService и связывание со службой было выполненоб
-                    // вызвать getDistance()
+                    /* Если имеется ссылка на OdometerService и связывание со службой было выполнено
+                    вызвать getDistance() */
                     distance = odometer.getDistance();
                 }
                 String distanceStr = String.format(Locale.getDefault(),
