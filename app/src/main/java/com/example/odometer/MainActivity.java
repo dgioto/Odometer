@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     //сохранение ссылки на службу
     private OdometerService odometer;
-    double distance = 0.0;
     //признак связывания с активностью
     private boolean bound = false;
     private final int PERMISSION_REQUEST_CODE = 698;
@@ -84,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickReset(View view){
         bound = false;
-        distance = 0.0;
 
         running = false;
         seconds = 0;
@@ -181,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
         handler.post(new Runnable() {
             @Override
             public void run() {
-//                double distance = 0.0;
+                double distance = 0.0;
                 if (bound && odometer != null){
                     //Если имеется ссылка на OdometerService и связывание со службой было выполненоб
                     // вызвать getDistance()
@@ -198,8 +196,7 @@ public class MainActivity extends AppCompatActivity {
 
     /*
     STOPWATCH
-    обновление показаний таймера
-     */
+    обновление показаний таймера  */
     private void runTimer(){
         final TextView timeView = (TextView) findViewById(R.id.time);
         //объект для выполнения кода в другом программном потоке
