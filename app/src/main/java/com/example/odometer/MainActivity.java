@@ -6,10 +6,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
@@ -93,8 +95,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickExit(View view){
-        finish();
-        System.exit(1);
+//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+//                MainActivity.this);
+//        alertDialogBuilder.setTitle("Выход");
+//        alertDialogBuilder.setMessage("Вы действительно хотите выйти?")
+//                .setCancelable(false)
+//                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+                        MainActivity.this.finish();
+                        System.exit(1);
+//                    }
+//                })
+//                .setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        dialogInterface.cancel();
+//                    }
+//                });
     }
 
     //STOPWATCH
