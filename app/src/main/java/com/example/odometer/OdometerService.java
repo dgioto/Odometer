@@ -96,10 +96,10 @@ public class OdometerService extends Service {
     }
 
     public double getDistance(){
-        return this.distanceInMeters;
+        return distanceInMeters;
     }
 
     public void resetDistance(){
-        this.distanceInMeters = 0;
+        distanceInMeters = 0;
     }
 }
