@@ -5,4 +5,14 @@
     <string name="reset">Рестарт</string>
     <string name="stop">Стоп</string>
     <string name="exit">Выход</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_top">Top fragment</string>
+    <string-array name="title_history">
+        <item>save1</item>
+        <item>save2</item>
+        <item>save3</item>
+        <item>save4</item>
+        <item>save5</item>
+        <item>save6</item>
+    </string-array>
 </resources>
