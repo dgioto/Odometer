@@ -15,4 +15,6 @@
         <item>save5</item>
         <item>save6</item>
     </string-array>
+    <string name="distance_tab">Растояние</string>
+    <string name="history_tab">История</string>
 </resources>
