@@ -2,6 +2,7 @@
     <string name="app_name">Distance</string>
     <string name="permission_denied">Location permission required</string>
     <string name="start">Старт</string>
+    <string name="save">Сохранить</string>
     <string name="reset">Рестарт</string>
     <string name="stop">Стоп</string>
     <string name="exit">Выход</string>

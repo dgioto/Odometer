@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -25,6 +24,8 @@ import android.os.IBinder;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.odometer.fragments.HistoryFragment;
+import com.example.odometer.fragments.TopFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Locale;
