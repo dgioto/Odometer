@@ -2,6 +2,7 @@ package com.example.odometer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
@@ -39,11 +40,6 @@ public class MainActivity extends AppCompatActivity {
     private final int PERMISSION_REQUEST_CODE = 698;
     private final int NOTIFICATION_ID = 423;
 
-    //STOPWATCH
-    //количество прошедших секунд
-    private int seconds = 0;
-    //флаг работы секундомера
-    private boolean running;
 
     //Создаем объект ServiceConnection
     private final ServiceConnection connection = new ServiceConnection() {
@@ -68,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         if (ContextCompat.checkSelfPermission(this,
                 OdometerService.PERMISSION_STRING)
@@ -97,58 +96,15 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(pager);
 
-        //STOPWATCH
-        //сохраняем переменные в объект Bundle
-        if (savedInstanceState != null){
-            seconds = savedInstanceState.getInt("seconds");
-            running = savedInstanceState.getBoolean("running");
-        }
-        //обнавляем показания таймера
-        runTimer();
+
+
     }
 
-    public void onClickStart(View view){
-        odometer.resetDistance();
-        bound = true;
-        displayDistance();
-
-        running = true;
-    }
-
-    public void onClickStop(View view){
 
 
-        running = false;
-    }
 
-    public void onClickReset(View view){
-        odometer.resetDistance();
-        bound = false;
 
-        running = false;
-        seconds = 0;
-    }
 
-    public void onClickExit(View view){
-        AlertDialog ald = new AlertDialog.Builder(MainActivity.this).create();
-        ald.setTitle("Выход");
-        ald.setMessage("Вы действительно хотите выйти?");
-        ald.setButton(AlertDialog.BUTTON_POSITIVE, "Да", (dialog, i) -> {
-                    MainActivity.this.finish();
-                    System.exit(1);
-        });
-        ald.setButton(AlertDialog.BUTTON_NEGATIVE,"Нет", (dialog, i) -> dialog.cancel());
-        ald.show();
-    }
-
-    //STOPWATCH
-    //сохранить состояние секундомера, если он готовится к уничтожению
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putInt("seconds", seconds);
-        savedInstanceState.putBoolean("running", running);
-    }
 
     //если у пользователя запрашивалось разрешение во время выполнения, проверить результат
     @Override
@@ -221,29 +177,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*
-    STOPWATCH
-    обновление показаний таймера  */
-    private void runTimer(){
-        final TextView timeView = findViewById(R.id.time);
-        //объект для выполнения кода в другом программном потоке
-        final Handler handler = new Handler();
-        //запускаем отдельный поток
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                int hours = seconds / 3600;
-                int minutes = (seconds % 3600) / 60;
-                int secs = seconds % 60;
-                String time = String.format(Locale.getDefault(),
-                        "%d:%02d:%02d", hours, minutes, secs);
-                timeView.setText(time);
-                if(running) seconds++;
-                //повторное выполнение кода с отсрочкой в 1 секунду
-                handler.postDelayed(this, 1000);
-            }
-        });
-    }
+
 
     //адаптер страничного компонента фрагментов
     private class SectionsPagerAdapter extends FragmentPagerAdapter {
