@@ -83,7 +83,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
             Intent intent = new Intent(this, OdometerService.class);
             //connection является объектом ServiceConnection
             //Метод bindService() использует интент и соединение со службой для связывания активности со службой
-            bindService(intent, connection, Context.BIND_AUTO_CREATE);
+            odometer.bindService(intent, connection, Context.BIND_AUTO_CREATE);
         }
 
         //STOPWATCH
@@ -131,7 +131,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Intent intent = new Intent(this, OdometerService.class);
                 //выполнить связывание со службой если пользователь предоставил разрешение
-                bindService(intent, connection, Context.BIND_AUTO_CREATE);
+                odometer.bindService(intent, connection, Context.BIND_AUTO_CREATE);
             } else {
                 //создание построителя уведомления
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
@@ -149,7 +149,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
                 //выдача уведомления
                 NotificationManager notificationManager =
-                        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                        (NotificationManager) odometer.getSystemService(Context.NOTIFICATION_SERVICE);
                 notificationManager.notify(NOTIFICATION_ID, builder.build());
             }
         }
@@ -165,9 +165,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickStart(){
-//        odometer.resetDistance();
-//        bound = true;
-//        displayDistance();
+        odometer.resetDistance();
+        bound = true;
 
         running = true;
     }
@@ -183,31 +182,31 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickReset(){
-//        odometer.resetDistance();
-//        bound = false;
+        odometer.resetDistance();
+        bound = false;
 
         running = false;
         seconds = 0;
     }
 
     private void onClickExit(){
-//        AlertDialog ald = new AlertDialog.Builder(MainActivity.this).create();
-//        ald.setTitle("Выход");
-//        ald.setMessage("Вы действительно хотите выйти?");
-//        ald.setButton(AlertDialog.BUTTON_POSITIVE, "Да", (dialog, i) -> {
-//            MainActivity.this.finish();
+        AlertDialog ald = new AlertDialog.Builder(MainActivity.this).create();
+        ald.setTitle("Выход");
+        ald.setMessage("Вы действительно хотите выйти?");
+        ald.setButton(AlertDialog.BUTTON_POSITIVE, "Да", (dialog, i) -> {
+            MainActivity.this.finish();
             System.exit(1);
-//        });
-//        ald.setButton(AlertDialog.BUTTON_NEGATIVE,"Нет", (dialog, i) -> dialog.cancel());
-//        ald.show();
+        });
+        ald.setButton(AlertDialog.BUTTON_NEGATIVE,"Нет", (dialog, i) -> dialog.cancel());
+        ald.show();
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         if (bound){
             //ИСпользет объект ServiceConnection для отмены связывания со службой
-            unbindService(connection);
+            odometer.unbindService(connection);
             //при разрыве связи со службой присваивается false
             bound = false;
         }
@@ -215,8 +214,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
     //ODOMETER
     //будет обновляться каждую секунду, а надпись в MainActivity будет обновляться полученным значением
-    private void displayDistance(){
-        final TextView distanceView = findViewById(R.id.distance);
+    private void displayDistance(View view){
+        final TextView distanceView = view.findViewById(R.id.distance);
         //создаем объект Handler
         final Handler handler = new Handler();
         handler.post(new Runnable() {
