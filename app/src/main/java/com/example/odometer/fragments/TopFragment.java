@@ -99,6 +99,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_top, container, false);
 
+        displayDistance(layout);
         //представление макета передается при вызове метода runTime()
         runTimer(layout);
 
