@@ -1,35 +1,15 @@
 package com.example.odometer;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.app.AlertDialog;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
-import android.view.View;
-import android.widget.TextView;
 
-import com.example.odometer.fragments.HistoryFragment;
-import com.example.odometer.fragments.TopFragment;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 

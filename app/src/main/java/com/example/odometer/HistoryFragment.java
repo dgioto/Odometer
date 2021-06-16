@@ -1,4 +1,4 @@
-package com.example.odometer.fragments;
+package com.example.odometer;
 
 import android.os.Bundle;
 
