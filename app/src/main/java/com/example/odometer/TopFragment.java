@@ -46,6 +46,12 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     private final int PERMISSION_REQUEST_CODE = 698;
     private final int NOTIFICATION_ID = 423;
 
+    MainActivity mainActivity;
+
+    public  TopFragment(MainActivity _mainActivity){
+        this.mainActivity = _mainActivity;
+    }
+
     //ODOMETER
     //Создаем объект ServiceConnection
     private final ServiceConnection connection = new ServiceConnection() {
@@ -71,19 +77,19 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         //ODOMETER
-        if (ContextCompat.checkSelfPermission(this,
+        if (ContextCompat.checkSelfPermission(mainActivity,
                 OdometerService.PERMISSION_STRING)
                 != PackageManager.PERMISSION_GRANTED){
             //Запросить разрешение ACCESS_FINE_LOCATION, если оно не было дано ранее
-            ActivityCompat.requestPermissions(this,
+            ActivityCompat.requestPermissions(mainActivity,
                     new String[]{OdometerService.PERMISSION_STRING},
                     PERMISSION_REQUEST_CODE);
         } else {
             //Интент, отправленный OdometerService
-            Intent intent = new Intent(this, OdometerService.class);
+            Intent intent = new Intent(mainActivity, OdometerService.class);
             //connection является объектом ServiceConnection
             //Метод bindService() использует интент и соединение со службой для связывания активности со службой
-            odometer.bindService(intent, connection, Context.BIND_AUTO_CREATE);
+            mainActivity.bindService(intent, connection, Context.BIND_AUTO_CREATE);
         }
 
         //STOPWATCH
@@ -130,12 +136,12 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Intent intent = new Intent(this, OdometerService.class);
+                Intent intent = new Intent(mainActivity, OdometerService.class);
                 //выполнить связывание со службой если пользователь предоставил разрешение
                 odometer.bindService(intent, connection, Context.BIND_AUTO_CREATE);
             } else {
                 //создание построителя уведомления
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(mainActivity)
                         .setSmallIcon(android.R.drawable.ic_menu_compass)
                         .setContentTitle(getResources().getString(R.string.app_name))
                         .setContentText(getResources().getString(R.string.permission_denied))
@@ -143,8 +149,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                         .setAutoCancel(true);
 
                 //создание действия
-                Intent actionIntent = new Intent(this, MainActivity.class);
-                PendingIntent actionPendingIntent = PendingIntent.getActivity(this, 0,
+                Intent actionIntent = new Intent(mainActivity, MainActivity.class);
+                PendingIntent actionPendingIntent = PendingIntent.getActivity(mainActivity, 0,
                         actionIntent, PendingIntent.FLAG_CANCEL_CURRENT);
                 builder.setContentIntent(actionPendingIntent);
 
@@ -166,15 +172,19 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickStart(){
+        //ODOMETER
         odometer.resetDistance();
         bound = true;
 
+        //STOPWATCH
         running = true;
     }
 
     private void onClickStop(){
+        //ODOMETER
+        bound = false;
 
-
+        //STOPWATCH
         running = false;
     }
 
@@ -183,19 +193,21 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickReset(){
+        //ODOMETER
         odometer.resetDistance();
         bound = false;
 
+        //STOPWATCH
         running = false;
         seconds = 0;
     }
 
     private void onClickExit(){
-        AlertDialog ald = new AlertDialog.Builder(MainActivity.this).create();
+        AlertDialog ald = new AlertDialog.Builder(mainActivity).create();
         ald.setTitle("Выход");
         ald.setMessage("Вы действительно хотите выйти?");
         ald.setButton(AlertDialog.BUTTON_POSITIVE, "Да", (dialog, i) -> {
-            MainActivity.this.finish();
+            mainActivity.finish();
             System.exit(1);
         });
         ald.setButton(AlertDialog.BUTTON_NEGATIVE,"Нет", (dialog, i) -> dialog.cancel());

@@ -13,8 +13,6 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         //используются фрагменты из библиотеки поддержки, поэтому адаптеру необходимо передать
         //ссылку на диспетчерфрагментов поддержки
         SectionsPagerAdapter pagerAdapter =
-                new SectionsPagerAdapter(getSupportFragmentManager());
+                new SectionsPagerAdapter(getSupportFragmentManager(), this);
         ViewPager pager = findViewById(R.id.pager);
         //Написанный ранее код FragmentPagerAdapter присоединяется к ViewPager
         pager.setAdapter(pagerAdapter);
@@ -37,17 +35,14 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(pager);
     }
 
-
-
-
-
-
-
     //адаптер страничного компонента фрагментов
     private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        private  MainActivity mA;
+
+        public SectionsPagerAdapter(FragmentManager fm, MainActivity _mA) {
             super(fm);
+            this.mA = _mA;
         }
 
         //необходим для указания какой фрагмент далжен выводиться на каждой странице
@@ -55,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position){
                 case  0:
-                    return  new TopFragment();
+                    return  new TopFragment(mA);
                 case  1:
                     return new HistoryFragment();
             }
