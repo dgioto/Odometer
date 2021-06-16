@@ -1,5 +1,6 @@
 package com.example.odometer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     //адаптер страничного компонента фрагментов
     private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        private  MainActivity mA;
+        private final MainActivity mA;
 
         public SectionsPagerAdapter(FragmentManager fm, MainActivity _mA) {
             super(fm);
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //необходим для указания какой фрагмент далжен выводиться на каждой странице
+        @NonNull
         @Override
         public Fragment getItem(int position) {
             switch (position){

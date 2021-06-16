@@ -23,11 +23,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.example.odometer.MainActivity;
-import com.example.odometer.OdometerService;
-import com.example.odometer.R;
-
 import java.util.Locale;
 
 public class TopFragment extends Fragment implements View.OnClickListener {
