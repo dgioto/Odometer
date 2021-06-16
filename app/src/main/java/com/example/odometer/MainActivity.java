@@ -33,6 +33,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    //ODOMETER
     //сохранение ссылки на службу
     private OdometerService odometer;
     //признак связывания с активностью
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private final int PERMISSION_REQUEST_CODE = 698;
     private final int NOTIFICATION_ID = 423;
 
-
+    //ODOMETER
     //Создаем объект ServiceConnection
     private final ServiceConnection connection = new ServiceConnection() {
         @Override
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //ODOMETER
         if (ContextCompat.checkSelfPermission(this,
                 OdometerService.PERMISSION_STRING)
                 != PackageManager.PERMISSION_GRANTED){
@@ -95,17 +97,9 @@ public class MainActivity extends AppCompatActivity {
         //Связывание ViewPager с TabLayout
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(pager);
-
-
-
     }
 
-
-
-
-
-
-
+    //ODOMETER
     //если у пользователя запрашивалось разрешение во время выполнения, проверить результат
     @Override
     public void onRequestPermissionsResult(int requestCode
@@ -154,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //ODOMETER
     //будет обновляться каждую секунду, а надпись в MainActivity будет обновляться полученным значением
     private void displayDistance(){
         final TextView distanceView = findViewById(R.id.distance);
@@ -176,8 +171,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
     //адаптер страничного компонента фрагментов
     private class SectionsPagerAdapter extends FragmentPagerAdapter {
