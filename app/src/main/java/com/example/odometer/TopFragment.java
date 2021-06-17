@@ -177,7 +177,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
     private void onClickStop(){
         //ODOMETER
-        bound = false;
+
 
         //STOPWATCH
         running = false;
