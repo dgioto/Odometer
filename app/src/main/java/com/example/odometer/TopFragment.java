@@ -122,8 +122,9 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
     private void onClickStart(){
         //ODOMETER
-        displayDistance(layout);
+        odometer.resetDistance();
         bound = true;
+        displayDistance(layout);
 
         //STOPWATCH
         running = true;
@@ -144,8 +145,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
     private void onClickReset(){
         //ODOMETER
-        odometer.resetDistance();
         bound = false;
+        odometer.resetDistance();
 
         //STOPWATCH
         running = false;
