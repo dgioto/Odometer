@@ -42,6 +42,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     private final int NOTIFICATION_ID = 423;
 
     MainActivity mainActivity;
+    View layout;
 
     public  TopFragment(MainActivity _mainActivity){
         this.mainActivity = _mainActivity;
@@ -98,9 +99,9 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_top, container, false);
+        layout = inflater.inflate(R.layout.fragment_top, container, false);
 
-        displayDistance(layout);
+
         //представление макета передается при вызове метода runTime()
         runTimer(layout);
 
@@ -117,6 +118,50 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         exitButton.setOnClickListener(this);
 
         return layout;
+    }
+
+    private void onClickStart(){
+        //ODOMETER
+        displayDistance(layout);
+        bound = true;
+
+        //STOPWATCH
+        running = true;
+    }
+
+    private void onClickStop(){
+        //ODOMETER
+        displayDistance(layout);
+        bound = false;
+
+        //STOPWATCH
+        running = false;
+    }
+
+    private void onClickSave(){
+
+    }
+
+    private void onClickReset(){
+        //ODOMETER
+        odometer.resetDistance();
+        bound = false;
+
+        //STOPWATCH
+        running = false;
+        seconds = 0;
+    }
+
+    private void onClickExit(){
+        AlertDialog ald = new AlertDialog.Builder(mainActivity).create();
+        ald.setTitle("Выход");
+        ald.setMessage("Вы действительно хотите выйти?");
+        ald.setButton(AlertDialog.BUTTON_POSITIVE, "Да", (dialog, i) -> {
+            mainActivity.finish();
+            System.exit(1);
+        });
+        ald.setButton(AlertDialog.BUTTON_NEGATIVE,"Нет", (dialog, i) -> dialog.cancel());
+        ald.show();
     }
 
     //ODOMETER
@@ -166,54 +211,11 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         savedInstanceState.putBoolean("running", running);
     }
 
-    private void onClickStart(){
-        //ODOMETER
-        odometer.resetDistance();
-        bound = true;
-
-        //STOPWATCH
-        running = true;
-    }
-
-    private void onClickStop(){
-        //ODOMETER
-
-
-        //STOPWATCH
-        running = false;
-    }
-
-    private void onClickSave(){
-
-    }
-
-    private void onClickReset(){
-        //ODOMETER
-        odometer.resetDistance();
-        bound = false;
-
-        //STOPWATCH
-        running = false;
-        seconds = 0;
-    }
-
-    private void onClickExit(){
-        AlertDialog ald = new AlertDialog.Builder(mainActivity).create();
-        ald.setTitle("Выход");
-        ald.setMessage("Вы действительно хотите выйти?");
-        ald.setButton(AlertDialog.BUTTON_POSITIVE, "Да", (dialog, i) -> {
-            mainActivity.finish();
-            System.exit(1);
-        });
-        ald.setButton(AlertDialog.BUTTON_NEGATIVE,"Нет", (dialog, i) -> dialog.cancel());
-        ald.show();
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         if (bound){
-            //ИСпользет объект ServiceConnection для отмены связывания со службой
+            //Использует объект ServiceConnection для отмены связывания со службой
             odometer.unbindService(connection);
             //при разрыве связи со службой присваивается false
             bound = false;
@@ -236,7 +238,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                     distance = odometer.getDistance();
                 }
                 String distanceStr = String.format(Locale.getDefault(),
-                        "%1$,.1f метров", distance);
+                        "%1$,.0f метров", distance);
                 distanceView.setText(distanceStr);
                 //значение TextView обновляется каждую секунду
                 handler.postDelayed(this, 1000);
