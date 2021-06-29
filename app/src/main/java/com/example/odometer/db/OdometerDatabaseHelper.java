@@ -1,4 +1,4 @@
-package com.example.odometer;
+package com.example.odometer.db;
 
 import android.content.ContentValues;
 import android.content.Context;
