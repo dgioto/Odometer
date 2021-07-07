@@ -1,6 +1,6 @@
 package com.example.odometer.db;
 
-public class MyConstants {
+public class DbConstants {
     public static final String TABLE_NAME = "my_table";
     public static final String _ID = "_id";
     public static final String TITLE = "title";
