@@ -13,14 +13,16 @@ import android.view.ViewGroup;
 
 import com.example.odometer.adapter.MainAdapter;
 import com.example.odometer.db.DbHelper;
+import com.example.odometer.db.DbManager;
 
 public class HistoryFragment extends ListFragment {
 
     private RecyclerView rcView;
     private MainAdapter mainAdapter;
     MainActivity mainActivity;
+    View layout;
 
-    DbHelper myDb;
+    DbManager dbManager;
 
     public HistoryFragment(MainActivity _mainActivity){
         this.mainActivity = _mainActivity;
@@ -29,18 +31,22 @@ public class HistoryFragment extends ListFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        init();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+
+        layout = inflater.inflate(R.layout.fragment_history, container, false);
+
+        init();
+
+        return layout;
     }
 
     private void init() {
-        rcView = rcView.findViewById(R.id.rcView);
+        dbManager = new DbManager(mainActivity);
+        rcView = layout.findViewById(R.id.rcView);
         mainAdapter = new MainAdapter(mainActivity);
         rcView.setLayoutManager(new LinearLayoutManager(mainActivity));
         rcView.setAdapter(mainAdapter);
@@ -49,6 +55,19 @@ public class HistoryFragment extends ListFragment {
     @Override
     public void onResume() {
         super.onResume();
-//        mainAdapter.updateAdapter(myDb.getReadableDatabase());
+
+        dbManager.openDb();
+        mainAdapter.updateAdapter(dbManager.getFromDb());
+    }
+
+    public void onClickSave(View view){
+        dbManager.insertToDb("Test", 10, "Test", "Test");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        dbManager.closeDb();
     }
 }
