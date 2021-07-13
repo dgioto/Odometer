@@ -18,4 +18,6 @@
     </string-array>
     <string name="distance_tab">Растояние</string>
     <string name="history_tab">История</string>
+
+    <string name="todo">TODO</string>
 </resources>

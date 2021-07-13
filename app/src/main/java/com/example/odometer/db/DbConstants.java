@@ -10,7 +10,7 @@ public class DbConstants {
     public static final String DB_NAME = "odometer_db.db";
     public static final int DB_VERSION = 1;
 
-    public static final String TABLE_STRUCTURE = "CREATE TABLE IF NOT EXISTS" +
+    public static final String TABLE_STRUCTURE = "CREATE TABLE IF NOT EXISTS " +
             TABLE_NAME + " (" + _ID + "INTEGER PRIMARY KEY," + TITLE + " TEXT, " +
             METERS + " INTEGER, " + TIMES + " TEXT, "+ DESC + " TEXT)";
 

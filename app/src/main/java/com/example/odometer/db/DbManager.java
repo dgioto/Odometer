@@ -9,12 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DbManager {
-    private final Context context;
     private final DbHelper dbHelper;
     private SQLiteDatabase db;
 
     public DbManager(Context context) {
-        this.context = context;
         dbHelper = new DbHelper(context);
     }
 
