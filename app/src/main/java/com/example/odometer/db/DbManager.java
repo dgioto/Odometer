@@ -20,7 +20,7 @@ public class DbManager {
         db = dbHelper.getWritableDatabase();
     }
 
-    public void insertToDb(String title, int meters, String times, String desc){
+    public void insertToDb(String title, String meters, String times, String desc){
         ContentValues cv = new ContentValues();
         cv.put(DbConstants.TITLE, title);
         cv.put(DbConstants.METERS, meters);

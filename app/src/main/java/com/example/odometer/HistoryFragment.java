@@ -1,5 +1,6 @@
 package com.example.odometer;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -62,9 +63,9 @@ public class HistoryFragment extends Fragment implements View.OnClickListener{
         mainAdapter.updateAdapter(dbManager.getFromDb());
     }
 
-    public void onClickSave(){
-        dbManager.insertToDb("Test", 10, "Test", "Test");
-        mainAdapter.updateAdapter(dbManager.getFromDb());
+    public void onClickAdd(){
+        Intent intent = new Intent(mainActivity, EditActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -77,6 +78,6 @@ public class HistoryFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.fab) onClickSave();
+        if (view.getId() == R.id.fab) onClickAdd();
     }
 }
