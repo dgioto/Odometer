@@ -64,6 +64,7 @@ public class HistoryFragment extends Fragment implements View.OnClickListener{
 
     public void onClickSave(){
         dbManager.insertToDb("Test", 10, "Test", "Test");
+        mainAdapter.updateAdapter(dbManager.getFromDb());
     }
 
     @Override
