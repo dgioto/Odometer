@@ -19,9 +19,13 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        dbManager.openDb();
-
         init();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dbManager.openDb();
     }
 
     private void init(){
