@@ -2,17 +2,21 @@ package com.example.odometer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.odometer.adapter.ListItem;
+import com.example.odometer.db.DbConstants;
 import com.example.odometer.db.DbManager;
 
 public class EditActivity extends AppCompatActivity {
 
     private EditText idTitle, idMeters, idTimes, idDesc;
     private DbManager dbManager;
+    private boolean isEditState = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,7 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
 
         init();
+        getMyIntents();
     }
 
     @Override
@@ -35,6 +40,21 @@ public class EditActivity extends AppCompatActivity {
         idDesc = findViewById(R.id.idDesc);
 
         dbManager = new DbManager(this);
+    }
+
+    private void getMyIntents(){
+        Intent intent = getIntent();
+        if (intent != null){
+            ListItem item = (ListItem) intent.getSerializableExtra(DbConstants.LIST_ITEM_INTENT);
+            isEditState = intent.getBooleanExtra(DbConstants.EDIT_STATE, true);
+
+            if (!isEditState){
+                idTitle.setText(item.getTitle());
+                idMeters.setText(item.getMeters());
+                idTimes.setText(item.getTimes());
+                idDesc.setText(item.getDesc());
+            }
+        }
     }
 
     public void onClickSave(View view){
