@@ -7,6 +7,7 @@ public class ListItem implements Serializable {
     private  String meters;
     private  String times;
     private  String desc;
+    private  int id = 0;
 
     public String getTitle() {
         return title;
@@ -38,5 +39,13 @@ public class ListItem implements Serializable {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

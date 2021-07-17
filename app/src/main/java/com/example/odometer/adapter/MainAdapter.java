@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.odometer.EditActivity;
 import com.example.odometer.R;
 import com.example.odometer.db.DbConstants;
+import com.example.odometer.db.DbManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,5 +76,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
         mainArray.clear();
         mainArray.addAll(newList);
         notifyDataSetChanged();
+    }
+
+    public void removeItem(int pos, DbManager dbManager){
+        dbManager.delete(mainArray.get(pos).getId());
+        mainArray.remove(pos);
+        notifyItemRangeChanged(0, mainArray.size());
+        notifyItemRemoved(pos);
     }
 }

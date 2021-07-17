@@ -13,7 +13,7 @@ public class DbConstants {
     public static final int DB_VERSION = 1;
 
     public static final String TABLE_STRUCTURE = "CREATE TABLE IF NOT EXISTS " +
-            TABLE_NAME + " (" + _ID + "INTEGER PRIMARY KEY," + TITLE + " TEXT, " +
+            TABLE_NAME + " (" + _ID + " INTEGER PRIMARY KEY, " + TITLE + " TEXT, " +
             METERS + " TEXT, " + TIMES + " TEXT, "+ DESC + " TEXT)";
 
     public static final String DROP_TABLE = "DROP TABLE IF EXISTS" + TABLE_NAME;

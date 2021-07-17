@@ -31,6 +31,11 @@ public class DbManager {
         db.insert(DbConstants.TABLE_NAME, null, cv);
     }
 
+    public void  delete(int id){
+        String selection = DbConstants._ID + "=" + id;
+        db.delete(DbConstants.TABLE_NAME, selection, null);
+    }
+
     public List<ListItem> getFromDb(){
         List<ListItem> tempList = new ArrayList<>();
         Cursor cursor = db.query(DbConstants.TABLE_NAME, null,
@@ -42,10 +47,12 @@ public class DbManager {
             String meters = cursor.getString(cursor.getColumnIndex(DbConstants.METERS));
             String times = cursor.getString(cursor.getColumnIndex(DbConstants.TIMES));
             String desc = cursor.getString(cursor.getColumnIndex(DbConstants.DESC));
+            int _id = cursor.getInt(cursor.getColumnIndex(DbConstants._ID));
             item.setTitle(title);
             item.setMeters(meters);
             item.setTimes(times);
             item.setDesc(desc);
+            item.setId(_id);
             tempList.add(item);
         }
         cursor.close();
