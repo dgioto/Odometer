@@ -64,15 +64,15 @@ public class EditActivity extends AppCompatActivity {
         String times = idTimes.getText().toString();
         String desc = idDesc.getText().toString();
 
-        if (title.equals("") || meters.equals("") || times.equals("") || desc.equals("")) {
-
-            Toast.makeText(this, R.string.text_empty, Toast.LENGTH_SHORT).show();
-
-        } else {
+//        if (title.equals("") || meters.equals("") || times.equals("") || desc.equals("")) {
+//
+//            Toast.makeText(this, R.string.text_empty, Toast.LENGTH_SHORT).show();
+//
+//        } else {
             dbManager.insertToDb(title, meters, times, desc);
             Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
             finish();
             dbManager.closeDb();
-        }
+//        }
     }
 }
