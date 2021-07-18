@@ -17,6 +17,7 @@ public class EditActivity extends AppCompatActivity {
     private EditText idTitle, idMeters, idTimes, idDesc;
     private DbManager dbManager;
     private boolean isEditState = true;
+    ListItem item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class EditActivity extends AppCompatActivity {
     private void getMyIntents(){
         Intent intent = getIntent();
         if (intent != null){
-            ListItem item = (ListItem) intent.getSerializableExtra(DbConstants.LIST_ITEM_INTENT);
+            item = (ListItem) intent.getSerializableExtra(DbConstants.LIST_ITEM_INTENT);
             isEditState = intent.getBooleanExtra(DbConstants.EDIT_STATE, true);
 
             if (!isEditState){
@@ -57,7 +58,7 @@ public class EditActivity extends AppCompatActivity {
         }
     }
 
-    public void onClickSave(View view){
+    public void onClickSave(View view) {
 
         String title = idTitle.getText().toString();
         String meters = idMeters.getText().toString();
@@ -65,14 +66,17 @@ public class EditActivity extends AppCompatActivity {
         String desc = idDesc.getText().toString();
 
 //        if (title.equals("") || meters.equals("") || times.equals("") || desc.equals("")) {
-//
 //            Toast.makeText(this, R.string.text_empty, Toast.LENGTH_SHORT).show();
-//
 //        } else {
-            dbManager.insertToDb(title, meters, times, desc);
-            Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
-            finish();
+            if (isEditState) {
+                dbManager.insertToDb(title, meters, times, desc);
+                Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
+            } else {
+                dbManager.updateItem(title, meters, times, desc, item.getId());
+                Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
+            }
             dbManager.closeDb();
-//        }
+            finish();
+//    }
     }
 }

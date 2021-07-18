@@ -31,6 +31,16 @@ public class DbManager {
         db.insert(DbConstants.TABLE_NAME, null, cv);
     }
 
+    public void  updateItem(String title, String meters, String times, String desc, int id){
+        String selection = DbConstants._ID + "=" + id;
+        ContentValues cv = new ContentValues();
+        cv.put(DbConstants.TITLE, title);
+        cv.put(DbConstants.METERS, meters);
+        cv.put(DbConstants.TIMES, times);
+        cv.put(DbConstants.DESC, desc);
+        db.update(DbConstants.TABLE_NAME, cv, selection, null);
+    }
+
     public void  delete(int id){
         String selection = DbConstants._ID + "=" + id;
         db.delete(DbConstants.TABLE_NAME, selection, null);
