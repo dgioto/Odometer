@@ -140,7 +140,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickSave(){
-
+        Intent intent = new Intent(mainActivity, EditActivity.class);
+        startActivity(intent);
     }
 
     private void onClickReset(){
