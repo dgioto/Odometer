@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.odometer.adapter.ListItem;
@@ -15,6 +16,7 @@ import com.example.odometer.db.DbManager;
 public class EditActivity extends AppCompatActivity {
 
     private EditText idTitle, idMeters, idTimes, idDesc;
+    TextView timeView;
     private DbManager dbManager;
     private boolean isEditState = true;
     ListItem item;
@@ -39,6 +41,10 @@ public class EditActivity extends AppCompatActivity {
         idMeters = findViewById(R.id.idMeters);
         idTimes = findViewById(R.id.idTimes);
         idDesc = findViewById(R.id.idDesc);
+
+        timeView = findViewById(R.id.time);
+        String timeText = timeView.getText().toString();
+        idTimes.setText(timeText);
 
         dbManager = new DbManager(this);
     }
