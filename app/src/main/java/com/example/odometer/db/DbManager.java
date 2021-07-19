@@ -22,22 +22,20 @@ public class DbManager {
         db = dbHelper.getWritableDatabase();
     }
 
-    public void insertToDb(String title, String meters, String times, String desc){
+    public void insertToDb(String title, String meters, String times){
         ContentValues cv = new ContentValues();
         cv.put(DbConstants.TITLE, title);
         cv.put(DbConstants.METERS, meters);
         cv.put(DbConstants.TIMES, times);
-        cv.put(DbConstants.DESC, desc);
         db.insert(DbConstants.TABLE_NAME, null, cv);
     }
 
-    public void  updateItem(String title, String meters, String times, String desc, int id){
+    public void  updateItem(String title, String meters, String times, int id){
         String selection = DbConstants._ID + "=" + id;
         ContentValues cv = new ContentValues();
         cv.put(DbConstants.TITLE, title);
         cv.put(DbConstants.METERS, meters);
         cv.put(DbConstants.TIMES, times);
-        cv.put(DbConstants.DESC, desc);
         db.update(DbConstants.TABLE_NAME, cv, selection, null);
     }
 
@@ -56,12 +54,10 @@ public class DbManager {
             String title = cursor.getString(cursor.getColumnIndex(DbConstants.TITLE));
             String meters = cursor.getString(cursor.getColumnIndex(DbConstants.METERS));
             String times = cursor.getString(cursor.getColumnIndex(DbConstants.TIMES));
-            String desc = cursor.getString(cursor.getColumnIndex(DbConstants.DESC));
             int _id = cursor.getInt(cursor.getColumnIndex(DbConstants._ID));
             item.setTitle(title);
             item.setMeters(meters);
             item.setTimes(times);
-            item.setDesc(desc);
             item.setId(_id);
             tempList.add(item);
         }

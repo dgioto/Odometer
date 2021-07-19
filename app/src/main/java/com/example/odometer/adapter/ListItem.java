@@ -6,7 +6,6 @@ public class ListItem implements Serializable {
     private  String title;
     private  String meters;
     private  String times;
-    private  String desc;
     private  int id = 0;
 
     public String getTitle() {
@@ -31,14 +30,6 @@ public class ListItem implements Serializable {
 
     public void setTimes(String times) {
         this.times = times;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 
     public int getId() {

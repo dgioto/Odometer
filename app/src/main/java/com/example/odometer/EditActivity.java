@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.odometer.adapter.ListItem;
@@ -15,8 +14,7 @@ import com.example.odometer.db.DbManager;
 
 public class EditActivity extends AppCompatActivity {
 
-    private EditText idTitle, idMeters, idTimes, idDesc;
-    TextView timeView;
+    private EditText idTitle, idMeters, idTimes;
     private DbManager dbManager;
     private boolean isEditState = true;
     ListItem item;
@@ -40,7 +38,6 @@ public class EditActivity extends AppCompatActivity {
         idTitle = findViewById(R.id.idTitle);
         idMeters = findViewById(R.id.idMeters);
         idTimes = findViewById(R.id.idTimes);
-        idDesc = findViewById(R.id.idDesc);
 
         dbManager = new DbManager(this);
     }
@@ -64,7 +61,6 @@ public class EditActivity extends AppCompatActivity {
                 idTitle.setText(item.getTitle());
                 idMeters.setText(item.getMeters());
                 idTimes.setText(item.getTimes());
-                idDesc.setText(item.getDesc());
             }
         }
     }
@@ -74,20 +70,15 @@ public class EditActivity extends AppCompatActivity {
         String title = idTitle.getText().toString();
         String meters = idMeters.getText().toString();
         String times = idTimes.getText().toString();
-        String desc = idDesc.getText().toString();
 
-//        if (title.equals("") || meters.equals("") || times.equals("") || desc.equals("")) {
-//            Toast.makeText(this, R.string.text_empty, Toast.LENGTH_SHORT).show();
-//        } else {
-            if (isEditState) {
-                dbManager.insertToDb(title, meters, times, desc);
-                Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
-            } else {
-                dbManager.updateItem(title, meters, times, desc, item.getId());
-                Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
-            }
-            dbManager.closeDb();
-            finish();
-//    }
+        if (isEditState) {
+            dbManager.insertToDb(title, meters, times);
+            Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
+        } else {
+            dbManager.updateItem(title, meters, times, item.getId());
+            Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
+        }
+        dbManager.closeDb();
+        finish();
     }
 }
