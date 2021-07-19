@@ -44,7 +44,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     MainActivity mainActivity;
     View layout;
 
-    TextView timeView;
+    private TextView distanceView;
+    private TextView timeView;
 
     public  TopFragment(MainActivity _mainActivity){
         this.mainActivity = _mainActivity;
@@ -143,6 +144,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
     private void onClickSave(){
         Intent intent = new Intent(mainActivity, EditActivity.class);
+        intent.putExtra("distanceView", distanceView.getText().toString());
         intent.putExtra("timeView", timeView.getText().toString());
         startActivity(intent);
     }
@@ -230,7 +232,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     //ODOMETER
     //будет обновляться каждую секунду, а надпись в MainActivity будет обновляться полученным значением
     private void displayDistance(View view){
-        final TextView distanceView = view.findViewById(R.id.distance);
+        distanceView = view.findViewById(R.id.distance);
         //создаем объект Handler
         final Handler handler = new Handler();
         handler.post(new Runnable() {

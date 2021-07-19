@@ -50,6 +50,9 @@ public class EditActivity extends AppCompatActivity {
 
         if (intent != null){
 
+            //перенос значения METERS в заметку
+            String metersText = intent.getStringExtra("distanceView");
+            idMeters.setText(metersText);
             //перенос значения TIMES в заметку
             String timeText = intent.getStringExtra("timeView");
             idTimes.setText(timeText);
