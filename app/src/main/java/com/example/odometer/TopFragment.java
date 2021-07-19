@@ -104,6 +104,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         layout = inflater.inflate(R.layout.fragment_top, container, false);
 
+        distanceView = layout.findViewById(R.id.distance);
 
         //представление макета передается при вызове метода runTime()
         runTimer(layout);
@@ -232,7 +233,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     //ODOMETER
     //будет обновляться каждую секунду, а надпись в MainActivity будет обновляться полученным значением
     private void displayDistance(View view){
-        distanceView = view.findViewById(R.id.distance);
+//        distanceView = view.findViewById(R.id.distance);
         //создаем объект Handler
         final Handler handler = new Handler();
         handler.post(new Runnable() {

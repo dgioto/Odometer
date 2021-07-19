@@ -14,11 +14,10 @@
 
     <string name="todo">TODO</string>
 
-    <string name="text_empty">Одно из полей не заполнено!</string>
     <string name="saved">Сохранено!</string>
 
     <string name="title">Заголовок</string>
-    <string name="title_def">Пробежка </string>
+    <string name="title_def">Пробежка_</string>
     <string name="meters">Метры</string>
     <string name="times">Время</string>
     <string name="disc">Описание</string>
