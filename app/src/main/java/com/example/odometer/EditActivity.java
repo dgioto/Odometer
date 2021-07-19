@@ -39,6 +39,9 @@ public class EditActivity extends AppCompatActivity {
         idMeters = findViewById(R.id.idMeters);
         idTimes = findViewById(R.id.idTimes);
 
+        //Перемещаю курсор в конец текста в EditText idTitle
+        idTitle.setSelection(idTitle.getText().length());
+
         dbManager = new DbManager(this);
     }
 

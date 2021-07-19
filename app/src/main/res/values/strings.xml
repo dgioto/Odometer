@@ -8,16 +8,7 @@
     <string name="exit">Выход</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_top">Top fragment</string>
-    <!--
-    <string-array name="title_history">
-        <item>save1</item>
-        <item>save2</item>
-        <item>save3</item>
-        <item>save4</item>
-        <item>save5</item>
-        <item>save6</item>
-    </string-array>
-    -->
+
     <string name="distance_tab">Растояние</string>
     <string name="history_tab">История</string>
 
@@ -27,7 +18,7 @@
     <string name="saved">Сохранено!</string>
 
     <string name="title">Заголовок</string>
-    <string name="title_def">Пробежка</string>
+    <string name="title_def">Пробежка </string>
     <string name="meters">Метры</string>
     <string name="times">Время</string>
     <string name="disc">Описание</string>
