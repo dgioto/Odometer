@@ -19,7 +19,7 @@ import com.example.odometer.adapter.MainAdapter;
 import com.example.odometer.db.DbManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class HistoryFragment extends Fragment implements View.OnClickListener{
+public class HistoryFragment extends Fragment{
 
     private MainAdapter mainAdapter;
     MainActivity mainActivity;
@@ -41,9 +41,6 @@ public class HistoryFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
 
         layout = inflater.inflate(R.layout.fragment_history, container, false);
-
-        FloatingActionButton fab = layout.findViewById(R.id.fab);
-        fab.setOnClickListener(this);
 
         init();
 
@@ -77,12 +74,6 @@ public class HistoryFragment extends Fragment implements View.OnClickListener{
         super.onDestroy();
 
         dbManager.closeDb();
-    }
-
-
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.fab) onClickAdd();
     }
 
     private ItemTouchHelper getItemTouchHelper(){
