@@ -42,16 +42,18 @@ public class EditActivity extends AppCompatActivity {
         idTimes = findViewById(R.id.idTimes);
         idDesc = findViewById(R.id.idDesc);
 
-        timeView = findViewById(R.id.time);
-        String timeText = timeView.getText().toString();
-        idTimes.setText(timeText);
-
         dbManager = new DbManager(this);
     }
 
     private void getMyIntents(){
         Intent intent = getIntent();
+
         if (intent != null){
+
+            //перенос значения TIMES в заметку
+            String timeText = intent.getStringExtra("timeView");
+            idTimes.setText(timeText);
+
             item = (ListItem) intent.getSerializableExtra(DbConstants.LIST_ITEM_INTENT);
             isEditState = intent.getBooleanExtra(DbConstants.EDIT_STATE, true);
 

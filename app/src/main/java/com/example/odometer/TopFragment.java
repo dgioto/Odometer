@@ -44,6 +44,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     MainActivity mainActivity;
     View layout;
 
+    TextView timeView;
+
     public  TopFragment(MainActivity _mainActivity){
         this.mainActivity = _mainActivity;
     }
@@ -141,6 +143,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
     private void onClickSave(){
         Intent intent = new Intent(mainActivity, EditActivity.class);
+        intent.putExtra("timeView", timeView.getText().toString());
         startActivity(intent);
     }
 
@@ -251,7 +254,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     //STOPWATCH
     //обновление показаний таймера
     private void runTimer(View view){
-        final TextView timeView = view.findViewById(R.id.time);
+        timeView = view.findViewById(R.id.time);
         //объект для выполнения кода в другом программном потоке
         final Handler handler = new Handler();
         //запускаем отдельный поток
