@@ -38,7 +38,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.setDate(mainArray.get(position).getTitle());
+        holder.setDate(mainArray.get(position).getTitle(),
+                mainArray.get(position).getMeters(),
+                mainArray.get(position).getTimes());
     }
 
     @Override
@@ -47,6 +49,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener {
 
         private TextView tvTitle;
+        private TextView tvMeters;
+        private TextView tvTimes;
         private Context context;
         private List<ListItem> mainArray;
 
@@ -55,11 +59,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
             this.context = context;
             this.mainArray = mainArray;
             tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvMeters = itemView.findViewById(R.id.tvMeters);
+            tvTimes = itemView.findViewById(R.id.tvTimes);
             itemView.setOnClickListener(this);
         }
 
-        public void setDate(String title){
+        public void setDate(String title, String meters, String times){
             tvTitle.setText(title);
+            tvMeters.setText(meters);
+            tvTimes.setText(times);
         }
 
         @Override
