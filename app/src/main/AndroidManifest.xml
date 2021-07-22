@@ -14,8 +14,9 @@
 
         <activity
             android:name=".EditActivity"
+            android:label="@string/note"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Odometer"/>
+            android:theme="@style/Theme.Odometer" />
 
         <service
             android:name=".OdometerService"
