@@ -1,10 +1,13 @@
 package com.example.odometer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -30,6 +33,21 @@ public class EditActivity extends AppCompatActivity {
 
         init();
         getMyIntents();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_edit, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.create_note) {
+            save();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -73,7 +91,10 @@ public class EditActivity extends AppCompatActivity {
     }
 
     public void onClickSave(View view) {
+        save();
+    }
 
+    private void save(){
         String title = idTitle.getText().toString();
         String meters = idMeters.getText().toString();
         String times = idTimes.getText().toString();
