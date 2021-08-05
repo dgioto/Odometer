@@ -1,4 +1,4 @@
-package com.example.odometer;
+package com.dgioto.odometer.View;
 
 import android.app.AlertDialog;
 import android.app.NotificationManager;
@@ -23,6 +23,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.dgioto.odometer.MainActivity;
+import com.dgioto.odometer.OdometerService;
+import com.dgioto.odometer.R;
+
 import java.util.Locale;
 
 public class TopFragment extends Fragment implements View.OnClickListener {

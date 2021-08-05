@@ -1,4 +1,4 @@
-package com.example.odometer;
+package com.dgioto.odometer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
+import com.dgioto.odometer.View.HistoryFragment;
+import com.dgioto.odometer.View.TopFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {

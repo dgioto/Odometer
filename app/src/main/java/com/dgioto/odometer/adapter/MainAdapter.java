@@ -1,8 +1,7 @@
-package com.example.odometer.adapter;
+package com.dgioto.odometer.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.odometer.EditActivity;
-import com.example.odometer.R;
-import com.example.odometer.db.DbConstants;
-import com.example.odometer.db.DbManager;
+import com.dgioto.odometer.View.EditActivity;
+import com.dgioto.odometer.R;
+import com.dgioto.odometer.db.DbConstants;
+import com.dgioto.odometer.db.DbManager;
 
 import java.util.ArrayList;
 import java.util.List;

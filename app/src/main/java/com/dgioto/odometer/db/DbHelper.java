@@ -1,4 +1,4 @@
-package com.example.odometer.db;
+package com.dgioto.odometer.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

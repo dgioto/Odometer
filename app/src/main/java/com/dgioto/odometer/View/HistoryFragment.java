@@ -1,4 +1,4 @@
-package com.example.odometer;
+package com.dgioto.odometer.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.odometer.adapter.MainAdapter;
-import com.example.odometer.db.DbManager;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.dgioto.odometer.MainActivity;
+import com.dgioto.odometer.R;
+import com.dgioto.odometer.adapter.MainAdapter;
+import com.dgioto.odometer.db.DbManager;
 
 public class HistoryFragment extends Fragment{
 

@@ -1,4 +1,4 @@
-package com.example.odometer;
+package com.dgioto.odometer.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,9 +12,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.odometer.adapter.ListItem;
-import com.example.odometer.db.DbConstants;
-import com.example.odometer.db.DbManager;
+import com.dgioto.odometer.R;
+import com.dgioto.odometer.adapter.ListItem;
+import com.dgioto.odometer.db.DbConstants;
+import com.dgioto.odometer.db.DbManager;
 
 public class EditActivity extends AppCompatActivity {
 

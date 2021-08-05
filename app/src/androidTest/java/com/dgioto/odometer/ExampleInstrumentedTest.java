@@ -1,4 +1,4 @@
-package com.example.odometer;
+package com.dgioto.odometer;
 
 import android.content.Context;
 
