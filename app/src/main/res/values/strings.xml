@@ -24,4 +24,8 @@
 
     <string name="note">Заметка</string>
 
+    <string name="do_you_exit">Вы действительно хотите выйти?</string>
+    <string name="yes">Да</string>
+    <string name="not">Нет</string>
+
 </resources>

@@ -166,15 +166,16 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickExit(){
-        AlertDialog ald = new AlertDialog.Builder(mainActivity).create();
-        ald.setTitle("Выход");
-        ald.setMessage("Вы действительно хотите выйти?");
-        ald.setButton(AlertDialog.BUTTON_POSITIVE, "Да", (dialog, i) -> {
-            mainActivity.finish();
-            System.exit(1);
-        });
-        ald.setButton(AlertDialog.BUTTON_NEGATIVE,"Нет", (dialog, i) -> dialog.cancel());
-        ald.show();
+        AlertDialog.Builder ald = new AlertDialog.Builder(mainActivity);
+        ald.setTitle(R.string.exit)
+            .setMessage(R.string.do_you_exit)
+            .setPositiveButton(R.string.yes, (dialog, i) -> {
+                mainActivity.finish();
+                System.exit(1);
+            })
+            .setNegativeButton(R.string.not, (dialog, i) -> dialog.cancel())
+            .show();
+        ald.create();
     }
 
     //ODOMETER
@@ -251,7 +252,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                     distance = odometer.getDistance();
                 }
                 String distanceStr = String.format(Locale.getDefault(),
-                        "%1$,.0f метров", distance);
+                        "%1$,.0f м", distance);
                 distanceView.setText(distanceStr);
                 //значение TextView обновляется каждую секунду
                 handler.postDelayed(this, 1000);
