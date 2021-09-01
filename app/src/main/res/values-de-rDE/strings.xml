@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Distance</string>
+    <string name="not">Nein</string>
+    <string name="yes">Jawohl</string>
+    <string name="do_you_exit">Willst du wirklich gehen?</string>
+    <string name="note">Die Notiz</string>
+    <string name="disc">Beschreibung</string>
+    <string name="times">Zeit</string>
+    <string name="meters">Meter</string>
+    <string name="title_def">Joggen</string>
+    <string name="title">Üerschrift</string>
+    <string name="saved">Gespeichert von</string>
+    <string name="history_tab">Geschichte</string>
+    <string name="distance_tab">Distanz</string>
+    <string name="exit">Ausgabe</string>
+    <string name="stop">Halt</string>
+    <string name="reset">Neu starten</string>
+    <string name="save">Speichern</string>
+    <string name="start">Start</string>
+</resources>

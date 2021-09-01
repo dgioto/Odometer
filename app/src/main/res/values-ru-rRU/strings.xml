@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Distance</string>
+    <string name="start">Старт</string>
+    <string name="save">Сохранить</string>
+    <string name="reset">Рестарт</string>
+    <string name="stop">Стоп</string>
+    <string name="exit">Выход</string>
+    <string name="distance_tab">Растояние</string>
+    <string name="history_tab">История</string>
+    <string name="saved">Сохранено!</string>
+    <string name="title">Заголовок</string>
+    <string name="title_def">Пробежка_</string>
+    <string name="meters">Метры</string>
+    <string name="times">Время</string>
+    <string name="disc">Описание</string>
+    <string name="note">Заметка</string>
+    <string name="do_you_exit">Вы действительно хотите выйти?</string>
+    <string name="yes">Да</string>
+    <string name="not">Нет</string>
+</resources>

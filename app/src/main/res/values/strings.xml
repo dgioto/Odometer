@@ -1,31 +1,31 @@
 <resources>
     <string name="app_name">Distance</string>
-    <string name="permission_denied">Location permission required</string>
-    <string name="start">Старт</string>
-    <string name="save">Сохранить</string>
-    <string name="reset">Рестарт</string>
-    <string name="stop">Стоп</string>
-    <string name="exit">Выход</string>
+    <string name="permission_denied" translatable="false">Location permission required</string>
+    <string name="start">Start</string>
+    <string name="save">Save</string>
+    <string name="reset">Reset</string>
+    <string name="stop">Stop</string>
+    <string name="exit">Exit</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="title_top">Top fragment</string>
+    <string name="title_top" translatable="false">Top fragment</string>
 
-    <string name="distance_tab">Растояние</string>
-    <string name="history_tab">История</string>
+    <string name="distance_tab">Distance</string>
+    <string name="history_tab">History</string>
 
-    <string name="todo">TODO</string>
+    <string name="todo" translatable="false">TODO</string>
 
-    <string name="saved">Сохранено!</string>
+    <string name="saved">Saved!</string>
 
-    <string name="title">Заголовок</string>
-    <string name="title_def">Пробежка_</string>
-    <string name="meters">Метры</string>
-    <string name="times">Время</string>
-    <string name="disc">Описание</string>
+    <string name="title">Title</string>
+    <string name="title_def">Jogging_</string>
+    <string name="meters">Meters</string>
+    <string name="times">Times</string>
+    <string name="disc">Вescription</string>
 
-    <string name="note">Заметка</string>
+    <string name="note">Note</string>
 
-    <string name="do_you_exit">Вы действительно хотите выйти?</string>
-    <string name="yes">Да</string>
-    <string name="not">Нет</string>
+    <string name="do_you_exit">Do you really want to leave?</string>
+    <string name="yes">Yes</string>
+    <string name="not">Not</string>
 
 </resources>
