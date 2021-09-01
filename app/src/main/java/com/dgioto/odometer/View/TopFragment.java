@@ -119,8 +119,6 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         startButton.setOnClickListener(this);
         Button stopButton = layout.findViewById(R.id.stop);
         stopButton.setOnClickListener(this);
-        Button saveButton = layout.findViewById(R.id.save);
-        saveButton.setOnClickListener(this);
         Button resetButton = layout.findViewById(R.id.reset);
         resetButton.setOnClickListener(this);
         Button exitButton = layout.findViewById(R.id.exit);
@@ -133,22 +131,13 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         //ODOMETER
         odometer.resetDistance();
         bound = true;
-        displayDistance(layout);
+        displayDistance();
 
         //STOPWATCH
         running = true;
     }
 
     private void onClickStop(){
-        //ODOMETER
-        displayDistance(layout);
-        bound = false;
-
-        //STOPWATCH
-        running = false;
-    }
-
-    private void onClickSave(){
         Intent intent = new Intent(mainActivity, EditActivity.class);
         intent.putExtra("distanceView", distanceView.getText().toString());
         intent.putExtra("timeView", timeView.getText().toString());
@@ -238,8 +227,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
     //ODOMETER
     //будет обновляться каждую секунду, а надпись в MainActivity будет обновляться полученным значением
-    private void displayDistance(View view){
-//        distanceView = view.findViewById(R.id.distance);
+    private void displayDistance(){
         //создаем объект Handler
         final Handler handler = new Handler();
         handler.post(new Runnable() {
@@ -252,7 +240,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                     distance = odometer.getDistance();
                 }
                 String distanceStr = String.format(Locale.getDefault(),
-                        "%1$,.0f м", distance);
+                        "%1$,.0f m", distance);
                 distanceView.setText(distanceStr);
                 //значение TextView обновляется каждую секунду
                 handler.postDelayed(this, 1000);
@@ -291,9 +279,6 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.stop:
                 onClickStop();
-                break;
-            case R.id.save:
-                onClickSave();
                 break;
             case R.id.reset:
                 onClickReset();
