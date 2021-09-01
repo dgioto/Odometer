@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Runтштп Tracker</string>
+    <string name="app_name" translatable="false">Run Tracker</string>
     <string name="permission_denied" translatable="false">Location permission required</string>
     <string name="start">Start</string>
     <string name="save">Save</string>
@@ -17,10 +17,10 @@
     <string name="saved">Saved!</string>
 
     <string name="title">Title</string>
-    <string name="title_def">Jogging_</string>
+    <string name="jogging">Jogging_</string>
     <string name="meters">Meters</string>
     <string name="times">Times</string>
-    <string name="disc">Вescription</string>
+    <string name="disc">Description</string>
 
     <string name="note">Note</string>
 

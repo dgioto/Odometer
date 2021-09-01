@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lauftracker</string>
     <string name="not">Nein</string>
     <string name="yes">Jawohl</string>
     <string name="do_you_exit">Willst du wirklich gehen?</string>
@@ -8,7 +7,7 @@
     <string name="disc">Beschreibung</string>
     <string name="times">Zeit</string>
     <string name="meters">Meter</string>
-    <string name="title_def">Joggen</string>
+    <string name="jogging">Joggen_</string>
     <string name="title">Üerschrift</string>
     <string name="saved">Gespeichert von</string>
     <string name="history_tab">Geschichte</string>

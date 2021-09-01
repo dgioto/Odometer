@@ -62,9 +62,6 @@ public class EditActivity extends AppCompatActivity {
         idMeters = findViewById(R.id.idMeters);
         idTimes = findViewById(R.id.idTimes);
 
-        //Перемещаю курсор в конец текста в EditText idTitle
-        idTitle.setSelection(idTitle.getText().length());
-
         dbManager = new DbManager(this);
     }
 
@@ -79,6 +76,13 @@ public class EditActivity extends AppCompatActivity {
             //перенос значения TIMES в заметку
             String timeText = intent.getStringExtra("timeView");
             idTimes.setText(timeText);
+
+            //add a number to an idTitle
+            int numberInt = Integer.parseInt(intent.getStringExtra("numberStr"));
+            idTitle.setText("№ " + numberInt);
+
+            //Перемещаю курсор в конец текста в EditText idTitle
+            idTitle.setSelection(idTitle.getText().length());
 
             item = (ListItem) intent.getSerializableExtra(DbConstants.LIST_ITEM_INTENT);
             isEditState = intent.getBooleanExtra(DbConstants.EDIT_STATE, true);

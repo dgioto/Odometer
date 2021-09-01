@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Беговой трекер</string>
     <string name="start">Старт</string>
     <string name="save">Сохранить</string>
     <string name="reset">Рестарт</string>
@@ -10,7 +9,7 @@
     <string name="history_tab">История</string>
     <string name="saved">Сохранено!</string>
     <string name="title">Заголовок</string>
-    <string name="title_def">Пробежка_</string>
+    <string name="jogging">Пробежка_</string>
     <string name="meters">Метры</string>
     <string name="times">Время</string>
     <string name="disc">Описание</string>
