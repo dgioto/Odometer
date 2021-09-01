@@ -79,7 +79,7 @@ public class EditActivity extends AppCompatActivity {
 
             //add a number to an idTitle
             int numberInt = Integer.parseInt(intent.getStringExtra("numberStr"));
-            idTitle.setText("№ " + numberInt);
+            idTitle.setText("(" + numberInt + ")");
 
             //Перемещаю курсор в конец текста в EditText idTitle
             idTitle.setSelection(idTitle.getText().length());
