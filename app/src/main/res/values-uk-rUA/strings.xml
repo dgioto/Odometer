@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Distance</string>
+    <string name="app_name">Біговий трекер</string>
     <string name="start">Старт</string>
     <string name="save">Зберігти</string>
     <string name="reset">Рестарт</string>

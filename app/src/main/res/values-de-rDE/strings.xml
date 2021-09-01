@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Distance</string>
+    <string name="app_name">Lauftracker</string>
     <string name="not">Nein</string>
     <string name="yes">Jawohl</string>
     <string name="do_you_exit">Willst du wirklich gehen?</string>

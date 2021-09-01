@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Distance</string>
+    <string name="app_name">Runтштп Tracker</string>
     <string name="permission_denied" translatable="false">Location permission required</string>
     <string name="start">Start</string>
     <string name="save">Save</string>
