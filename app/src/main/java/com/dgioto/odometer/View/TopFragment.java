@@ -83,6 +83,9 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         //ODOMETER
+        //устраняет Баг: вылет программы при нажатии на кнопку СТАРТ или РЕСТАРТ после первого запуска
+        odometer = new OdometerService();
+
         if (ContextCompat.checkSelfPermission(mainActivity,
                 OdometerService.PERMISSION_STRING)
                 != PackageManager.PERMISSION_GRANTED){
