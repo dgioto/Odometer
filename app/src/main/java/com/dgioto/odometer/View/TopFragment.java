@@ -146,7 +146,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         intent.putExtra("timeView", timeView.getText().toString());
 
         //push a number to an intent
-        intent.putExtra("numberStr", "" + number++);
+        String numberStr = "" + number++;
+        intent.putExtra("numberStr", numberStr);
         startActivity(intent);
     }
 

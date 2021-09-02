@@ -17,6 +17,10 @@ import com.dgioto.odometer.adapter.ListItem;
 import com.dgioto.odometer.db.DbConstants;
 import com.dgioto.odometer.db.DbManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class EditActivity extends AppCompatActivity {
 
     private EditText idTitle, idMeters, idTimes;
@@ -78,8 +82,12 @@ public class EditActivity extends AppCompatActivity {
             idTimes.setText(timeText);
 
             //add a number to an idTitle
-            int numberInt = Integer.parseInt(intent.getStringExtra("numberStr"));
-            idTitle.setText("(" + numberInt + ")");
+            String numberStr = intent.getStringExtra("numberStr");
+            //add a date to an idTitle
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy", Locale.getDefault());
+            String currentDate = sdf.format( new Date());
+
+            idTitle.setText(currentDate + " (" + numberStr + ")");
 
             //Перемещаю курсор в конец текста в EditText idTitle
             idTitle.setSelection(idTitle.getText().length());
