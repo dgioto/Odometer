@@ -82,7 +82,7 @@ public class EditActivity extends AppCompatActivity {
             idTimes.setText(timeText);
 
             //add a date to an idTitle
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy HH:mm", Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy_HH:mm", Locale.getDefault());
             String currentDate = sdf.format( new Date());
             idTitle.setText(currentDate);
 

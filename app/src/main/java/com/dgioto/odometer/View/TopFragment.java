@@ -52,6 +52,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     private TextView distanceView;
     private TextView timeView;
 
+    Button startButton, noteButton, dischargeButton, exitButton;
+
     public  TopFragment(MainActivity _mainActivity){
         this.mainActivity = _mainActivity;
     }
@@ -118,19 +120,27 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         runTimer(layout);
 
         //связываем слушатель с каждой из кнопок
-        Button startButton = layout.findViewById(R.id.start);
+        startButton = layout.findViewById(R.id.start);
         startButton.setOnClickListener(this);
-        Button stopButton = layout.findViewById(R.id.note);
-        stopButton.setOnClickListener(this);
-        Button resetButton = layout.findViewById(R.id.discharge);
-        resetButton.setOnClickListener(this);
-        Button exitButton = layout.findViewById(R.id.exit);
+
+        noteButton = layout.findViewById(R.id.note);
+        noteButton.setOnClickListener(this);
+
+        dischargeButton = layout.findViewById(R.id.discharge);
+        dischargeButton.setOnClickListener(this);
+
+        exitButton = layout.findViewById(R.id.exit);
         exitButton.setOnClickListener(this);
 
         return layout;
     }
 
     private void onClickStart(){
+        //при нажатии кнопки СТАРТ, делаем видимой кнопку ЗАМЕТКА
+        noteButton.setVisibility(View.VISIBLE);
+        //при нажатии кнопки СТАРТ, делаем видимой кнопку СБРОС
+        dischargeButton.setVisibility(View.VISIBLE);
+
         //ODOMETER
         odometer.resetDistance();
         bound = true;
@@ -149,6 +159,11 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickDischarge(){
+        //при нажатии кнопки СБРОС, прячим кнопку ЗАМЕТКА
+        noteButton.setVisibility(View.GONE);
+        //при нажатии кнопки СБРОС, прячим ее
+        dischargeButton.setVisibility(View.GONE);
+
         //ODOMETER
         bound = false;
         odometer.resetDistance();
