@@ -147,7 +147,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         startActivity(intent);
     }
 
-    private void onClickReset(){
+    private void onClickDischarge(){
         //ODOMETER
         bound = false;
         odometer.resetDistance();
@@ -284,7 +284,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                 onClickStop();
                 break;
             case R.id.reset:
-                onClickReset();
+                onClickDischarge();
                 break;
             case R.id.exit:
                 onClickExit();
