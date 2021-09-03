@@ -3,7 +3,7 @@
     <string name="permission_denied" translatable="false">Location permission required</string>
     <string name="start">Start</string>
     <string name="save">Save</string>
-    <string name="reset">Reset</string>
+    <string name="discharge">Discharge</string>
     <string name="stop">Stop</string>
     <string name="exit">Exit</string>
     <!-- TODO: Remove or change this placeholder text -->

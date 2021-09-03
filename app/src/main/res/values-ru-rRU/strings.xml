@@ -2,7 +2,7 @@
 <resources>
     <string name="start">Старт</string>
     <string name="save">Сохранить</string>
-    <string name="reset">Рестарт</string>
+    <string name="discharge">Сброс</string>
     <string name="stop">Стоп</string>
     <string name="exit">Выход</string>
     <string name="distance_tab">Растояние</string>

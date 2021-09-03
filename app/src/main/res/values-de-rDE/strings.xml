@@ -14,7 +14,7 @@
     <string name="distance_tab">Distanz</string>
     <string name="exit">Ausgabe</string>
     <string name="stop">Halt</string>
-    <string name="reset">Neu starten</string>
+    <string name="discharge">Entladen</string>
     <string name="save">Speichern</string>
     <string name="start">Start</string>
 </resources>
