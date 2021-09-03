@@ -52,8 +52,6 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     private TextView distanceView;
     private TextView timeView;
 
-    private int number = 1;
-
     public  TopFragment(MainActivity _mainActivity){
         this.mainActivity = _mainActivity;
     }
@@ -106,7 +104,6 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         if (savedInstanceState != null){
             seconds = savedInstanceState.getInt("seconds");
             running = savedInstanceState.getBoolean("running");
-            number = savedInstanceState.getInt("number");
         }
     }
 
@@ -147,10 +144,6 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         Intent intent = new Intent(mainActivity, EditActivity.class);
         intent.putExtra("distanceView", distanceView.getText().toString());
         intent.putExtra("timeView", timeView.getText().toString());
-
-        //push a number to an intent
-        String numberStr = "" + number++;
-        intent.putExtra("numberStr", numberStr);
         startActivity(intent);
     }
 
@@ -222,7 +215,6 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putInt("seconds", seconds);
         savedInstanceState.putBoolean("running", running);
-        savedInstanceState.putInt("number", number);
     }
 
     @Override

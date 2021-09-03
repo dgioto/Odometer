@@ -81,13 +81,10 @@ public class EditActivity extends AppCompatActivity {
             String timeText = intent.getStringExtra("timeView");
             idTimes.setText(timeText);
 
-            //add a number to an idTitle
-            String numberStr = intent.getStringExtra("numberStr");
             //add a date to an idTitle
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy", Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy HH:mm", Locale.getDefault());
             String currentDate = sdf.format( new Date());
-
-            idTitle.setText(currentDate + " (" + numberStr + ")");
+            idTitle.setText(currentDate);
 
             //Перемещаю курсор в конец текста в EditText idTitle
             idTitle.setSelection(idTitle.getText().length());
