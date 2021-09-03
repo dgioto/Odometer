@@ -138,6 +138,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
         //STOPWATCH
         running = true;
+        seconds = 0;
     }
 
     private void onClickNote(){
