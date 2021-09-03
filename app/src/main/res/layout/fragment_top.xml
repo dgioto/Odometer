@@ -46,13 +46,13 @@
         app:layout_constraintTop_toBottomOf="@+id/time" />
 
     <Button
-        android:id="@+id/stop"
+        android:id="@+id/note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="40dp"
-        android:text="@string/stop"
+        android:text="@string/note"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/start" />
 
     <Button
-        android:id="@+id/reset"
+        android:id="@+id/discharge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -71,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stop" />
+        app:layout_constraintTop_toBottomOf="@+id/note" />
 
     <Button
         android:id="@+id/exit"
@@ -85,6 +85,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reset" />
+        app:layout_constraintTop_toBottomOf="@+id/discharge" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

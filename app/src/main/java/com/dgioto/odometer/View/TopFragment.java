@@ -120,9 +120,9 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         //связываем слушатель с каждой из кнопок
         Button startButton = layout.findViewById(R.id.start);
         startButton.setOnClickListener(this);
-        Button stopButton = layout.findViewById(R.id.stop);
+        Button stopButton = layout.findViewById(R.id.note);
         stopButton.setOnClickListener(this);
-        Button resetButton = layout.findViewById(R.id.reset);
+        Button resetButton = layout.findViewById(R.id.discharge);
         resetButton.setOnClickListener(this);
         Button exitButton = layout.findViewById(R.id.exit);
         exitButton.setOnClickListener(this);
@@ -280,10 +280,10 @@ public class TopFragment extends Fragment implements View.OnClickListener {
             case R.id.start:
                 onClickStart();
                 break;
-            case R.id.stop:
+            case R.id.note:
                 onClickStop();
                 break;
-            case R.id.reset:
+            case R.id.discharge:
                 onClickDischarge();
                 break;
             case R.id.exit:

@@ -18,7 +18,7 @@
 
     <string name="title">Title</string>
     <string name="jogging">Jogging_</string>
-    <string name="meters">Meters</string>
+    <string name="meters" translatable="false">0 m</string>
     <string name="times">Times</string>
     <string name="disc">Description</string>
 
