@@ -51,7 +51,11 @@ public class HistoryFragment extends Fragment{
         dbManager = new DbManager(mainActivity);
         RecyclerView rcView = layout.findViewById(R.id.rcView);
         mainAdapter = new MainAdapter(mainActivity);
-        rcView.setLayoutManager(new LinearLayoutManager(mainActivity));
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(mainActivity);
+        //add a reversLayout recyclerView to a History
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+        rcView.setLayoutManager(mLayoutManager);
         getItemTouchHelper().attachToRecyclerView(rcView);
         rcView.setAdapter(mainAdapter);
     }
@@ -62,11 +66,6 @@ public class HistoryFragment extends Fragment{
 
         dbManager.openDb();
         mainAdapter.updateAdapter(dbManager.getFromDb());
-    }
-
-    public void onClickAdd(){
-        Intent intent = new Intent(mainActivity, EditActivity.class);
-        startActivity(intent);
     }
 
     @Override
