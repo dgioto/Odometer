@@ -140,7 +140,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         running = true;
     }
 
-    private void onClickStop(){
+    private void onClickNote(){
         Intent intent = new Intent(mainActivity, EditActivity.class);
         intent.putExtra("distanceView", distanceView.getText().toString());
         intent.putExtra("timeView", timeView.getText().toString());
@@ -281,7 +281,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                 onClickStart();
                 break;
             case R.id.note:
-                onClickStop();
+                onClickNote();
                 break;
             case R.id.discharge:
                 onClickDischarge();
