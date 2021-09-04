@@ -129,9 +129,6 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         dischargeButton = layout.findViewById(R.id.discharge);
         dischargeButton.setOnClickListener(this);
 
-        exitButton = layout.findViewById(R.id.exit);
-        exitButton.setOnClickListener(this);
-
         return layout;
     }
 
@@ -171,19 +168,6 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         //STOPWATCH
         running = false;
         seconds = 0;
-    }
-
-    private void onClickExit(){
-        AlertDialog.Builder ald = new AlertDialog.Builder(mainActivity);
-        ald.setTitle(R.string.exit)
-            .setMessage(R.string.do_you_exit)
-            .setPositiveButton(R.string.yes, (dialog, i) -> {
-                mainActivity.finish();
-                System.exit(1);
-            })
-            .setNegativeButton(R.string.not, (dialog, i) -> dialog.cancel())
-            .show();
-        ald.create();
     }
 
     //ODOMETER
@@ -301,9 +285,6 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.discharge:
                 onClickDischarge();
-                break;
-            case R.id.exit:
-                onClickExit();
                 break;
         }
     }
