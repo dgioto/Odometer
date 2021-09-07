@@ -16,4 +16,5 @@
     <string name="do_you_exit">Вы действительно хотите выйти?</string>
     <string name="yes">Да</string>
     <string name="not">Нет</string>
+    <string name="map_tab">Карта</string>
 </resources>

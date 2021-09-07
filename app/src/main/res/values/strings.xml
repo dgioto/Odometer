@@ -27,5 +27,7 @@
     <string name="do_you_exit">Do you really want to leave?</string>
     <string name="yes">Yes</string>
     <string name="not">Not</string>
+    <string name="map_tab">Map</string>
+    <!-- TODO: Remove or change this placeholder text -->
 
 </resources>
