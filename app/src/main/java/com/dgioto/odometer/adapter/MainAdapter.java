@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dgioto.odometer.View.EditActivity;
 import com.dgioto.odometer.R;
+import com.dgioto.odometer.View.HistoryFragment;
 import com.dgioto.odometer.db.DbConstants;
 import com.dgioto.odometer.db.DbManager;
 
@@ -23,10 +24,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
 
     private Context context;
     private List<ListItem> mainArray;
+    private DbManager dbManager;
 
-    public MainAdapter(Context context) {
+    public MainAdapter(Context context, DbManager dbManager) {
         this.context = context;
         mainArray = new ArrayList<>();
+        this.dbManager = dbManager;
     }
 
     @NonNull
@@ -46,7 +49,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
     @Override
     public int getItemCount() { return mainArray.size(); }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener {
 
         private TextView tvTitle;
         private TextView tvMeters;
@@ -66,7 +69,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
 
             delete = itemView.findViewById(R.id.delete);
             delete.setOnClickListener(v -> {
-
+                removeItem(getAdapterPosition(), dbManager);
             });
         }
 

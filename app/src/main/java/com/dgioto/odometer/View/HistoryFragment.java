@@ -24,7 +24,6 @@ public class HistoryFragment extends Fragment{
     private MainAdapter mainAdapter;
     MainActivity mainActivity;
     View layout;
-
     DbManager dbManager;
 
     public HistoryFragment(MainActivity _mainActivity){
@@ -50,13 +49,13 @@ public class HistoryFragment extends Fragment{
     private void init() {
         dbManager = new DbManager(mainActivity);
         RecyclerView rcView = layout.findViewById(R.id.rcView);
-        mainAdapter = new MainAdapter(mainActivity);
+        mainAdapter = new MainAdapter(mainActivity, dbManager);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mainActivity);
         //add a reversLayout recyclerView to a History
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
         rcView.setLayoutManager(mLayoutManager);
-        getItemTouchHelper().attachToRecyclerView(rcView);
+//        getItemTouchHelper().attachToRecyclerView(rcView);
         rcView.setAdapter(mainAdapter);
     }
 
@@ -75,17 +74,17 @@ public class HistoryFragment extends Fragment{
         dbManager.closeDb();
     }
 
-    private ItemTouchHelper getItemTouchHelper(){
-        return  new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                mainAdapter.removeItem(viewHolder.getAdapterPosition(), dbManager);
-            }
-        });
-    }
+//    private ItemTouchHelper getItemTouchHelper(){
+//        return  new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+//            @Override
+//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+//                mainAdapter.removeItem(viewHolder.getAdapterPosition(), dbManager);
+//            }
+//        });
+//    }
 }
