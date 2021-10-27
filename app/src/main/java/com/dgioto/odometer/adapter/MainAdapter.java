@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,6 +53,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
         private TextView tvTimes;
         private Context context;
         private List<ListItem> mainArray;
+        private ImageButton delete;
 
         public MyViewHolder(@NonNull View itemView, Context context, List<ListItem> mainArray) {
             super(itemView);
@@ -61,6 +63,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
             tvMeters = itemView.findViewById(R.id.tvMeters);
             tvTimes = itemView.findViewById(R.id.tvTimes);
             itemView.setOnClickListener(this);
+
+            delete = itemView.findViewById(R.id.delete);
+            delete.setOnClickListener(v -> {
+
+            });
         }
 
         public void setDate(String title, String meters, String times){
