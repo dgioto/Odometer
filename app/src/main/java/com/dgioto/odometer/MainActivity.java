@@ -11,7 +11,6 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 
 import com.dgioto.odometer.View.HistoryFragment;
-import com.dgioto.odometer.View.MapFragment;
 import com.dgioto.odometer.View.TopFragment;
 import com.google.android.material.tabs.TabLayout;
 
@@ -58,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
                     return  new TopFragment(mA);
                 case  1:
                     return new HistoryFragment(mA);
-                case  2:
-                    return new MapFragment(mA);
             }
             return null;
         }
@@ -67,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         //необходим для определения количества страниц в ViewPager
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
         //добавляем текстна вкладки
@@ -79,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
                     return getResources().getText(R.string.distance_tab);
                 case 1:
                     return getResources().getText(R.string.history_tab);
-                case 2:
-                    return getResources().getText(R.string.map_tab);
             }
             return null;
         }
