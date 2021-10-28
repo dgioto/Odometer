@@ -13,8 +13,4 @@
     <string name="times">Час</string>
     <string name="disc">Опис</string>
     <string name="note">Замітка</string>
-    <string name="do_you_exit">Ви дійсно хочете вийти?</string>
-    <string name="yes">Так</string>
-    <string name="not">Ні</string>
-    <string name="map_tab">Карта</string>
 </resources>

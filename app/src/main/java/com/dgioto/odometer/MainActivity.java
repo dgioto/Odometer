@@ -1,6 +1,7 @@
 package com.dgioto.odometer;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.dgioto.odometer.View.HistoryFragment;
 import com.dgioto.odometer.View.TopFragment;
@@ -31,6 +34,43 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(pager);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.help:
+                AlertDialog helpDialog = new AlertDialog.Builder(MainActivity.this).create();
+                helpDialog.setTitle(R.string.help);
+                helpDialog.setMessage("__________________");
+                helpDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        (dialog, which) -> dialog.dismiss());
+                helpDialog.show();
+                return true;
+            case R.id.about:
+                AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
+                aboutDialog.setTitle(R.string.about);
+                aboutDialog.setMessage(" (c)2021 dgioto@gmail.com");
+                aboutDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        (dialog, which) -> dialog.dismiss());
+                aboutDialog.show();
+                return true;
+            case R.id.version:
+                AlertDialog versionDialog = new AlertDialog.Builder(MainActivity.this).create();
+                versionDialog.setTitle(R.string.version);
+                versionDialog.setMessage("v_1.0.0");
+                versionDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        (dialog, which) -> dialog.dismiss());
+                versionDialog.show();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private class SectionsPagerAdapter extends FragmentPagerAdapter {

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="not">Nein</string>
-    <string name="yes">Jawohl</string>
-    <string name="do_you_exit">Willst du wirklich gehen?</string>
     <string name="note">Die Notiz</string>
     <string name="disc">Beschreibung</string>
     <string name="times">Zeit</string>
@@ -16,5 +13,4 @@
     <string name="discharge">Entladen</string>
     <string name="save">Speichern</string>
     <string name="start">Start</string>
-    <string name="map_tab">Karte</string>
 </resources>
