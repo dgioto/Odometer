@@ -24,21 +24,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Связывание SectionsPagerAdapter c ViewPager
-        //используются фрагменты из библиотеки поддержки, поэтому адаптеру необходимо передать
-        //ссылку на диспетчерфрагментов поддержки
         SectionsPagerAdapter pagerAdapter =
                 new SectionsPagerAdapter(getSupportFragmentManager(), this);
         ViewPager pager = findViewById(R.id.pager);
-        //Написанный ранее код FragmentPagerAdapter присоединяется к ViewPager
         pager.setAdapter(pagerAdapter);
 
-        //Связывание ViewPager с TabLayout
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(pager);
     }
 
-    //адаптер страничного компонента фрагментов
     private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         private final MainActivity mA;
@@ -48,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
             this.mA = _mA;
         }
 
-        //необходим для указания какой фрагмент далжен выводиться на каждой странице
         @NonNull
         @Override
         public Fragment getItem(int position) {
@@ -61,17 +54,14 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
-        //необходим для определения количества страниц в ViewPager
         @Override
         public int getCount() {
             return 2;
         }
 
-        //добавляем текстна вкладки
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position){
-                //добавляем строковые ресурсы для вкладок
                 case 0:
                     return getResources().getText(R.string.distance_tab);
                 case 1:

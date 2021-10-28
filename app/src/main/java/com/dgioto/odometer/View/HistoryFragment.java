@@ -22,9 +22,9 @@ import com.dgioto.odometer.db.DbManager;
 public class HistoryFragment extends Fragment{
 
     private MainAdapter mainAdapter;
-    MainActivity mainActivity;
-    View layout;
-    DbManager dbManager;
+    private MainActivity mainActivity;
+    private View layout;
+    private DbManager dbManager;
 
     public HistoryFragment(MainActivity _mainActivity){
         this.mainActivity = _mainActivity;
@@ -38,11 +38,8 @@ public class HistoryFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         layout = inflater.inflate(R.layout.fragment_history, container, false);
-
         init();
-
         return layout;
     }
 
@@ -50,19 +47,17 @@ public class HistoryFragment extends Fragment{
         dbManager = new DbManager(mainActivity);
         RecyclerView rcView = layout.findViewById(R.id.rcView);
         mainAdapter = new MainAdapter(mainActivity, dbManager);
+
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mainActivity);
-        //add a reversLayout recyclerView to a History
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
         rcView.setLayoutManager(mLayoutManager);
-//        getItemTouchHelper().attachToRecyclerView(rcView);
         rcView.setAdapter(mainAdapter);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
         dbManager.openDb();
         mainAdapter.updateAdapter(dbManager.getFromDb());
     }
@@ -70,21 +65,6 @@ public class HistoryFragment extends Fragment{
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         dbManager.closeDb();
     }
-
-//    private ItemTouchHelper getItemTouchHelper(){
-//        return  new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-//            @Override
-//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-//                mainAdapter.removeItem(viewHolder.getAdapterPosition(), dbManager);
-//            }
-//        });
-//    }
 }

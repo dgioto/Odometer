@@ -22,11 +22,8 @@ public class OdometerService extends Service {
     private final IBinder binder = new OdometerBinder();
     private LocationListener listener;
     private LocationManager locManager;
-    //расстояние и последнее местонахождение пользователя хранится в статических переменных,
-    //что бы их значения сохранялись при уничтожении службы
     private static double distanceInMeters;
     private static Location lastLocation = null;
-    //строка разрешения добавляется в виде константы
     public  static final  String PERMISSION_STRING = Manifest.permission.ACCESS_FINE_LOCATION;
 
     public class OdometerBinder extends Binder{
@@ -41,14 +38,12 @@ public class OdometerService extends Service {
 
         listener = new LocationListener() {
             @Override
-            //Параметр Location описывает текущее местоположение
             public void onLocationChanged(@NonNull Location location) {
-                //задаем исходное значение местонахождения пользователя
+
                 if (lastLocation == null){
                     lastLocation = location;
                 }
                 distanceInMeters += location.distanceTo(lastLocation);
-                //обновляем пройденное расстояние и последнее местонахождение пользователя
                 lastLocation = location;
             }
 
@@ -62,15 +57,13 @@ public class OdometerService extends Service {
             public void onStatusChanged(String provider, int status, Bundle extras) {   }
         };
 
-        //получаем объект LocationManager
         locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        //проверить наличее разрешения
+
         if (ContextCompat.checkSelfPermission(this, PERMISSION_STRING)
                 == PackageManager.PERMISSION_GRANTED) {
-            //получить самый точный провайдер
             String provider = locManager.getBestProvider(new Criteria(), true);
+
             if (provider != null){
-                //запросить обновления от провайдера данных местонахождения
                 locManager.requestLocationUpdates(provider, 1000, 1, listener);
             }
         }
@@ -87,7 +80,6 @@ public class OdometerService extends Service {
         if (locManager != null && listener != null){
             if (ContextCompat.checkSelfPermission(this, PERMISSION_STRING)
                     == PackageManager.PERMISSION_GRANTED){
-                //прекратить получение обновлений, если имеется разрешение на их удаление
                 locManager.removeUpdates(listener);
             }
             locManager = null;

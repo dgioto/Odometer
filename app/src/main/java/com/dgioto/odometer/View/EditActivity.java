@@ -26,7 +26,7 @@ public class EditActivity extends AppCompatActivity {
     private EditText idTitle, idMeters, idTimes;
     private DbManager dbManager;
     private boolean isEditState = true;
-    ListItem item;
+    private ListItem item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,20 +73,15 @@ public class EditActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         if (intent != null){
-
-            //перенос значения METERS в заметку
             String metersText = intent.getStringExtra("distanceView");
             idMeters.setText(metersText);
-            //перенос значения TIMES в заметку
             String timeText = intent.getStringExtra("timeView");
             idTimes.setText(timeText);
 
-            //add a date to an idTitle
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy_HH:mm", Locale.getDefault());
             String currentDate = sdf.format( new Date());
             idTitle.setText(currentDate);
 
-            //Перемещаю курсор в конец текста в EditText idTitle
             idTitle.setSelection(idTitle.getText().length());
 
             item = (ListItem) intent.getSerializableExtra(DbConstants.LIST_ITEM_INTENT);
