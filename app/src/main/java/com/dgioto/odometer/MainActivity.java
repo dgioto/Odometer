@@ -44,31 +44,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.help:
-                AlertDialog helpDialog = new AlertDialog.Builder(MainActivity.this).create();
-                helpDialog.setTitle(R.string.help);
-                helpDialog.setMessage("__________________");
-                helpDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        (dialog, which) -> dialog.dismiss());
-                helpDialog.show();
-                return true;
-            case R.id.about:
-                AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
-                aboutDialog.setTitle(R.string.about);
-                aboutDialog.setMessage(" (c)2021 dgioto@gmail.com");
-                aboutDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        (dialog, which) -> dialog.dismiss());
-                aboutDialog.show();
-                return true;
-            case R.id.version:
-                AlertDialog versionDialog = new AlertDialog.Builder(MainActivity.this).create();
-                versionDialog.setTitle(R.string.version);
-                versionDialog.setMessage("v_1.0.0");
-                versionDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        (dialog, which) -> dialog.dismiss());
-                versionDialog.show();
-                return true;
+        if (item.getItemId() == R.id.about) {
+            AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
+            aboutDialog.setTitle(R.string.about);
+            aboutDialog.setMessage("(c)2021 dgioto@gmail.com\nv1.0");
+            aboutDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    (dialog, which) -> dialog.dismiss());
+            aboutDialog.show();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
