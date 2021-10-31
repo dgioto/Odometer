@@ -12,12 +12,15 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import com.dgioto.odometer.View.HistoryFragment;
 import com.dgioto.odometer.View.TopFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
+
+    LinearLayout view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.about) {
             AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
             aboutDialog.setTitle(R.string.about);
-            aboutDialog.setMessage("(c)2021 dgioto@gmail.com\nv1.0");
+            view = (LinearLayout) getLayoutInflater().inflate(R.layout.about_dialog, null);
+            aboutDialog.setView(view);
             aboutDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     (dialog, which) -> dialog.dismiss());
             aboutDialog.show();

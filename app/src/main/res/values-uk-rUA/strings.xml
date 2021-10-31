@@ -13,4 +13,5 @@
     <string name="times">Час</string>
     <string name="disc">Опис</string>
     <string name="note">Замітка</string>
+    <string name="version">Версія:</string>
 </resources>

@@ -24,11 +24,14 @@
 
     <string name="note">Note</string>
 
-    <string name="help" translatable="false">Help</string>
-    <string name="help_message" translatable="false">Help</string>
     <string name="about" translatable="false">About</string>
-    <string name="about_message" translatable="false">(c)2021 dgioto@gmail.com</string>
-    <string name="version" translatable="false">Version</string>
-    <string name="version_message" translatable="false">v_1.0.0</string>
+    <string name="about_message" translatable="false">Main Features
+        \n-mMost accurate distance/time tracking available
+        \n- running GPS
+        \n- run log: run history tracking</string>
+    <string name="year" translatable="false">(c)2021</string>
+    <string name="mail" translatable="false">dgioto@gmail.com</string>
+    <string name="version">Version:</string>
+    <string name="version_message" translatable="false">1.0.0</string>
 
 </resources>

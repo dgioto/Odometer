@@ -13,4 +13,5 @@
     <string name="discharge">Entladen</string>
     <string name="save">Speichern</string>
     <string name="start">Start</string>
+    <string name="version">Ausführung:</string>
 </resources>
