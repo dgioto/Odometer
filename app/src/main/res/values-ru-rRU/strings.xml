@@ -14,4 +14,9 @@
     <string name="disc">Описание</string>
     <string name="note">Заметка</string>
     <string name="version">Версия:</string>
+    <string name="about">О приложении</string>
+    <string name="about_message"> Особенности:
+         \n- доступно наиболее точное отслеживание расстояния/времени
+         \n- работает GPS
+         \n- журнал запусков: история запусков </string>
 </resources>

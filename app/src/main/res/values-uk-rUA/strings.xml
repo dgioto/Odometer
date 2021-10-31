@@ -14,4 +14,9 @@
     <string name="disc">Опис</string>
     <string name="note">Замітка</string>
     <string name="version">Версія:</string>
+    <string name="about">Про додаток</string>
+    <string name="about_message"> Основні риси:
+         \n- найточніше відстеження відстані/часу
+         \n- працює GPS
+         \n- журнал запуску: історія запуску</string>
 </resources>

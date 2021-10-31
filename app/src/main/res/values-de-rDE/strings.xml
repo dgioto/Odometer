@@ -14,4 +14,9 @@
     <string name="save">Speichern</string>
     <string name="start">Start</string>
     <string name="version">Ausführung:</string>
+    <string name="about">Über die App</string>
+    <string name="about_message"> Haupteigenschaften:
+         \n- genaueste verfügbare Entfernungs/Zeiterfassung
+         \n- GPS ausführen
+         \n- Protokoll ausführen: Verlauf ausführen</string>
 </resources>
