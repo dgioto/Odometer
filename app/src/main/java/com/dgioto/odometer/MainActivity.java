@@ -9,10 +9,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
+import android.content.Intent;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.dgioto.odometer.View.HistoryFragment;
 import com.dgioto.odometer.View.TopFragment;
@@ -37,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(pager);
+
+        checkingGPStatus();
     }
 
     @Override
@@ -58,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void checkingGPStatus(){
+        LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        boolean statusOfGPS = manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if (!statusOfGPS){
+            Toast.makeText(this, R.string.turn_on_gps, Toast.LENGTH_LONG).show();
+        }
     }
 
     private class SectionsPagerAdapter extends FragmentPagerAdapter {

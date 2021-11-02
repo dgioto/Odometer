@@ -19,4 +19,5 @@
          \n- genaueste verfügbare Entfernungs/Zeiterfassung
          \n- GPS ausführen
          \n- Protokoll ausführen: Verlauf ausführen</string>
+    <string name="turn_on_gps">Schalten Sie das GPS ein und starten Sie die App neu!</string>
 </resources>
