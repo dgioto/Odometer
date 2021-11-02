@@ -5,61 +5,55 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/about_message"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+        <TextView
+            android:id="@+id/mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/mail"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/version"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
+                    android:id="@+id/version"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/about_message"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-                <TextView
-                    android:id="@+id/mail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/mail"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginTop="8dp"
-                            android:text="@string/version"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-                        <TextView
-                            android:id="@+id/version"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginTop="8dp"
-                            android:text="@string/version_message"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:text="@string/year"
+                    android:text="@string/version_message"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/year"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:text="@string/year"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
 </LinearLayout>
