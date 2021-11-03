@@ -1,5 +1,6 @@
 package com.dgioto.odometer.View;
 
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -46,6 +47,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     private View layout;
     private TextView distanceView, timeView;
     private Button startButton, noteButton, dischargeButton;
+    private LinearLayout view;
 
     public  TopFragment(MainActivity _mainActivity){
         this.mainActivity = _mainActivity;
@@ -106,6 +108,17 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickStart(){
+
+        mainActivity.managerGPS();
+        if (!mainActivity.statusOfGPS){
+            AlertDialog statusOfGPSDialog = new AlertDialog.Builder(mainActivity).create();
+            statusOfGPSDialog.setTitle(R.string.gps);
+            view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_status_of_gps, null);
+            statusOfGPSDialog.setView(view);
+            statusOfGPSDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    (dialog, which) -> dialog.dismiss());
+            statusOfGPSDialog.show();
+        } else {
             noteButton.setVisibility(View.VISIBLE);
             dischargeButton.setVisibility(View.VISIBLE);
 
@@ -117,6 +130,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
             //STOPWATCH
             running = true;
             seconds = 0;
+        }
     }
 
     private void onClickNote(){

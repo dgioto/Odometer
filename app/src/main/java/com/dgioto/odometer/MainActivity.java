@@ -1,6 +1,5 @@
 package com.dgioto.odometer;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,9 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.about) {
             AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
             aboutDialog.setTitle(R.string.about);
-            view = (LinearLayout) getLayoutInflater().inflate(R.layout.about_dialog, null);
+            view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_about, null);
             aboutDialog.setView(view);
             aboutDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     (dialog, which) -> dialog.dismiss());
