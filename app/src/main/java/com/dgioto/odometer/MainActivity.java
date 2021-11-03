@@ -1,5 +1,6 @@
 package com.dgioto.odometer;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
@@ -17,6 +19,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dgioto.odometer.View.HistoryFragment;
@@ -25,7 +28,10 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout view;
+    private LinearLayout view;
+    private TextView toolbarTextGPS;
+    public LocationManager manager;
+    public boolean statusOfGPS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +73,19 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("ResourceAsColor")
     private void checkingGPStatus(){
-        LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        boolean statusOfGPS = manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        managerGPS();
         if (!statusOfGPS){
+            toolbarTextGPS = (TextView) findViewById(R.id.text_gps);
+            toolbarTextGPS.setTextColor(R.color.white);
             Toast.makeText(this, R.string.turn_on_gps, Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void managerGPS(){
+        manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        statusOfGPS = manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 
     private class SectionsPagerAdapter extends FragmentPagerAdapter {

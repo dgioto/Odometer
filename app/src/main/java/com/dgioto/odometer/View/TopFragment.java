@@ -1,6 +1,5 @@
 package com.dgioto.odometer.View;
 
-import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -22,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dgioto.odometer.MainActivity;
@@ -106,17 +106,17 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onClickStart(){
-        noteButton.setVisibility(View.VISIBLE);
-        dischargeButton.setVisibility(View.VISIBLE);
+            noteButton.setVisibility(View.VISIBLE);
+            dischargeButton.setVisibility(View.VISIBLE);
 
-        //ODOMETER
-        odometer.resetDistance();
-        bound = true;
-        displayDistance();
+            //ODOMETER
+            odometer.resetDistance();
+            bound = true;
+            displayDistance();
 
-        //STOPWATCH
-        running = true;
-        seconds = 0;
+            //STOPWATCH
+            running = true;
+            seconds = 0;
     }
 
     private void onClickNote(){
