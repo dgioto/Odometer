@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         if (!statusOfGPS){
             toolbarTextGPS = (TextView) findViewById(R.id.text_gps);
             toolbarTextGPS.setTextColor(R.color.white);
-            Toast.makeText(this, R.string.turn_on_gps, Toast.LENGTH_LONG).show();
         }
     }
 

@@ -20,5 +20,5 @@
          \n- працює GPS
          \n- журнал запуску: історія запуску</string>
     <string name="turn_on_gps">Увімкніть GPS і перезапустіть програму!</string>
-    <string name="gps">GPS вимкнено</string>
+    <string name="gps">GPS вимкн.</string>
 </resources>
