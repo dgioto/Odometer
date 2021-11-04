@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dgioto.odometer.MainActivity;
+import com.dgioto.odometer.NotificationService;
 import com.dgioto.odometer.OdometerService;
 import com.dgioto.odometer.R;
 
@@ -130,6 +131,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
             //STOPWATCH
             running = true;
             seconds = 0;
+
+            startNotificationService();
         }
     }
 
@@ -151,6 +154,12 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         //STOPWATCH
         running = false;
         seconds = 0;
+    }
+
+    private void startNotificationService(){
+        Intent intent = new Intent(mainActivity, NotificationService.class);
+        intent.putExtra(NotificationService.EXTRA_MESSAGE, getResources().getString(R.string.mail));
+        mainActivity.startService(intent);
     }
 
     //ODOMETER
