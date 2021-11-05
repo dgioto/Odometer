@@ -26,8 +26,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dgioto.odometer.MainActivity;
-import com.dgioto.odometer.NotificationService;
-import com.dgioto.odometer.OdometerService;
+import com.dgioto.odometer.Service.NotificationService;
+import com.dgioto.odometer.Service.OdometerService;
 import com.dgioto.odometer.R;
 
 import java.util.Locale;

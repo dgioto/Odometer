@@ -1,4 +1,4 @@
-package com.dgioto.odometer;
+package com.dgioto.odometer.Service;
 
 import android.Manifest;
 import android.app.Service;
