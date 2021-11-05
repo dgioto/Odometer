@@ -25,8 +25,9 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String appVersion = "1.001";
     private LinearLayout view;
-    private TextView toolbarTextGPS;
+    private TextView toolbarTextGPS, version;
     public LocationManager manager;
     public boolean statusOfGPS;
 
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.about) {
@@ -62,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
             aboutDialog.setTitle(R.string.about);
             view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_about, null);
             aboutDialog.setView(view);
+            version = (TextView) view.findViewById(R.id.version);
+            version.setText(appVersion);
             aboutDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     (dialog, which) -> dialog.dismiss());
             aboutDialog.show();
