@@ -34,7 +34,7 @@ public class NotificationService extends IntentService {
 
     private void showText(final String text) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_baseline_my_location_24)
+                .setSmallIcon(R.drawable.ic_baseline_directions_run_24)
                 .setContentText(text)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
