@@ -31,13 +31,13 @@ public class NotificationService extends IntentService {
 
     private void showText(final String text) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                .setSmallIcon(R.drawable.ic_baseline_my_location_24)
                 .setContentText(text)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true);
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         Intent actionIntent = new Intent(this, MainActivity.class);
-        PendingIntent actionPendingIntent = PendingIntent.getActivity(this,
+        PendingIntent actionPendingIntent = PendingIntent.getActivity(
+                this,
                 0,
                 actionIntent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
