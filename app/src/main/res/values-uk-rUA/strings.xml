@@ -21,4 +21,5 @@
          \n- журнал запуску: історія запуску</string>
     <string name="turn_on_gps">Увімкніть GPS і перезапустіть програму!</string>
     <string name="gps">GPS вимкн.</string>
+    <string name="notification">Відстеження вашого тренування</string>
 </resources>

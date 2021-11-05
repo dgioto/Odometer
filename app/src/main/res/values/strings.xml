@@ -28,5 +28,6 @@
     <string name="version_message" translatable="false">1.0.0</string>
     <string name="turn_on_gps">Turn on the GPS and restart the app!</string>
     <string name="gps">GPS off</string>
+    <string name="notification">Tracking your workout</string>
 
 </resources>

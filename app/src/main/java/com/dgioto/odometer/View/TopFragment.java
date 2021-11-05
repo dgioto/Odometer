@@ -158,7 +158,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
     private void startNotificationService(){
         Intent intent = new Intent(mainActivity, NotificationService.class);
-        intent.putExtra(NotificationService.EXTRA_MESSAGE, getResources().getString(R.string.mail));
+        intent.putExtra(NotificationService.EXTRA_MESSAGE, getResources().getString(R.string.notification));
         mainActivity.startService(intent);
     }
 

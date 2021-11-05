@@ -21,4 +21,5 @@
          \n- Protokoll ausführen: Verlauf ausführen</string>
     <string name="turn_on_gps">Schalten Sie das GPS ein und starten Sie die App neu!</string>
     <string name="gps">GPS aus</string>
+    <string name="notification">Verfolgen Sie Ihr Training</string>
 </resources>
