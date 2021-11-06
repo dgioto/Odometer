@@ -33,8 +33,8 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        Toolbar toolbar = findViewById(R.id.toolbarEdit);
-        setSupportActionBar(toolbar);
+        Toolbar toolbarEdit = findViewById(R.id.toolbarEdit);
+        setSupportActionBar(toolbarEdit);
 
         init();
         getMyIntents();
