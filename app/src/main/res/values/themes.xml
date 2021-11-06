@@ -16,8 +16,4 @@
             tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
 
-    <style name="Theme.Odometer_toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
 </resources>
