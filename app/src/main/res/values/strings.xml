@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">Run Tracker</string>
     <string name="permission_denied" translatable="false">Location permission required</string>
     <string name="start">Start</string>
+    <string name="restart">Restart</string>
     <string name="save">Save</string>
     <string name="discharge">Discharge</string>
     <string name="stop">Stop</string>

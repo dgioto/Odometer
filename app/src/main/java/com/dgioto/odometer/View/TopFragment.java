@@ -122,6 +122,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         } else {
             noteButton.setVisibility(View.VISIBLE);
             dischargeButton.setVisibility(View.VISIBLE);
+            startButton.setText(R.string.restart);
 
             //ODOMETER
             odometer.resetDistance();
@@ -146,6 +147,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     private void onClickDischarge(){
         noteButton.setVisibility(View.GONE);
         dischargeButton.setVisibility(View.GONE);
+        startButton.setText(R.string.start);
 
         //ODOMETER
         bound = false;
