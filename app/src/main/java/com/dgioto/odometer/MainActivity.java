@@ -26,10 +26,10 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
 
     //app version
-    private String appVersion = "1.001";
+    private String appVersion = "1.000";
 
     private LinearLayout view;
-    private TextView toolbarTextGPS, version;
+    private TextView version;
     public LocationManager manager;
     public boolean statusOfGPS;
 
@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(pager);
-
-        checkingGPStatus();
     }
 
     @Override
@@ -58,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    @SuppressLint("ResourceType")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.about) {
@@ -74,15 +71,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressLint("ResourceAsColor")
-    private void checkingGPStatus(){
-        managerGPS();
-        if (!statusOfGPS){
-            toolbarTextGPS = findViewById(R.id.text_gps);
-            toolbarTextGPS.setTextColor(R.color.white);
-        }
     }
 
     public void managerGPS(){
