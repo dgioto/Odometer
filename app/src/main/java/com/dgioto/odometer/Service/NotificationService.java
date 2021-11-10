@@ -1,5 +1,6 @@
 package com.dgioto.odometer.Service;
 
+import android.annotation.SuppressLint;
 import android.app.IntentService;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -39,7 +40,7 @@ public class NotificationService extends IntentService {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         Intent actionIntent = new Intent(this, MainActivity.class);
-        PendingIntent actionPendingIntent = PendingIntent.getActivity(
+        @SuppressLint("UnspecifiedImmutableFlag") PendingIntent actionPendingIntent = PendingIntent.getActivity(
                 this,
                 0,
                 actionIntent,

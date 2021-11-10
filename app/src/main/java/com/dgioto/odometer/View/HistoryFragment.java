@@ -1,12 +1,9 @@
 package com.dgioto.odometer.View;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +19,7 @@ import com.dgioto.odometer.db.DbManager;
 public class HistoryFragment extends Fragment{
 
     private MainAdapter mainAdapter;
-    private MainActivity mainActivity;
+    private final MainActivity mainActivity;
     private View layout;
     private DbManager dbManager;
 

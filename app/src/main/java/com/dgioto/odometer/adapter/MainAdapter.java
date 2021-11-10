@@ -1,5 +1,6 @@
 package com.dgioto.odometer.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dgioto.odometer.View.EditActivity;
 import com.dgioto.odometer.R;
-import com.dgioto.odometer.View.HistoryFragment;
 import com.dgioto.odometer.db.DbConstants;
 import com.dgioto.odometer.db.DbManager;
 
@@ -22,9 +22,9 @@ import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> {
 
-    private Context context;
-    private List<ListItem> mainArray;
-    private DbManager dbManager;
+    private final Context context;
+    private final List<ListItem> mainArray;
+    private final DbManager dbManager;
 
     public MainAdapter(Context context, DbManager dbManager) {
         this.context = context;
@@ -51,12 +51,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener {
 
-        private TextView tvTitle;
-        private TextView tvMeters;
-        private TextView tvTimes;
-        private Context context;
-        private List<ListItem> mainArray;
-        private ImageButton delete;
+        private final TextView tvTitle;
+        private final TextView tvMeters;
+        private final TextView tvTimes;
+        private final Context context;
+        private final List<ListItem> mainArray;
 
         public MyViewHolder(@NonNull View itemView, Context context, List<ListItem> mainArray) {
             super(itemView);
@@ -67,10 +66,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
             tvTimes = itemView.findViewById(R.id.tvTimes);
             itemView.setOnClickListener(this);
 
-            delete = itemView.findViewById(R.id.delete);
-            delete.setOnClickListener(v -> {
-                removeItem(getAdapterPosition(), dbManager);
-            });
+            ImageButton delete = itemView.findViewById(R.id.delete);
+            delete.setOnClickListener(v -> removeItem(getAdapterPosition(), dbManager));
         }
 
         public void setDate(String title, String meters, String times){
@@ -89,6 +86,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void updateAdapter(List<ListItem> newList){
         mainArray.clear();
         mainArray.addAll(newList);

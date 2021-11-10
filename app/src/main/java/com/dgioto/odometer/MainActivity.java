@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dgioto.odometer.View.HistoryFragment;
 import com.dgioto.odometer.View.TopFragment;
@@ -26,10 +24,8 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
 
     //app version
-    private String appVersion = "1.000";
+    private final String appVersion = "1.000";
 
-    private LinearLayout view;
-    private TextView version;
     public LocationManager manager;
     public boolean statusOfGPS;
 
@@ -61,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.about) {
             AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
             aboutDialog.setTitle(R.string.about);
-            view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_about, null);
+            LinearLayout view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_about, null);
             aboutDialog.setView(view);
-            version = view.findViewById(R.id.version);
+            TextView version = view.findViewById(R.id.version);
             version.setText(appVersion);
             aboutDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     (dialog, which) -> dialog.dismiss());

@@ -1,13 +1,10 @@
 package com.dgioto.odometer.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -91,11 +88,10 @@ public class EditActivity extends AppCompatActivity {
 
         if (isEditState) {
             dbManager.insertToDb(title, meters, times);
-            Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
         } else {
             dbManager.updateItem(title, meters, times, item.getId());
-            Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
         }
+        Toast.makeText(this, R.string.saved, Toast.LENGTH_SHORT).show();
         dbManager.closeDb();
         finish();
     }
