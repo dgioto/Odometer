@@ -20,7 +20,7 @@
          \n- працює GPS
          \n- журнал запуску: історія запуску</string>
     <string name="turn_on_gps">Увімкніть GPS!</string>
-    <string name="gps">GPS вимкн.</string>
+    <string name="gps">GPS вимкнен</string>
     <string name="notification">Відстеження вашого тренування</string>
     <string name="restart">Рестарт</string>
 </resources>
