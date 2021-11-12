@@ -4,15 +4,9 @@ A simple open source run tracker for Android.
 
 Track your sport activities with RunTracker using the GPS in your Android phone.
 
-![Screenshot_2021-11-11-23-27-49](https://user-images.githubusercontent.com/59308650/141435549-ddbf55c6-27dc-4e69-a8bd-a0bf6bf1138a.jpg)
-![Screenshot_2021-11-11-23-28-00](https://user-images.githubusercontent.com/59308650/141435555-cb6a088c-27f3-48d1-af4e-25dac413040d.jpg)
-![Screenshot_2021-11-11-23-28-12](https://user-images.githubusercontent.com/59308650/141435556-0729ee31-f771-4b3d-a743-838a1d35b624.jpg)
-
-![image](https://user-images.githubusercontent.com/59308650/141432845-29228647-f414-4600-91bf-e3c18b475b27.jpg)
-![image](https://user-images.githubusercontent.com/59308650/141433374-77b8333d-b0b6-43ce-ac1b-246aba0a6db5.jpg)
-![image](https://user-images.githubusercontent.com/59308650/141433383-0549daa9-7218-4a79-a8fc-98b472d94d6e.jpg)
-
-
+![image](https://user-images.githubusercontent.com/59308650/141435549-ddbf55c6-27dc-4e69-a8bd-a0bf6bf1138a.jpg)
+![image](https://user-images.githubusercontent.com/59308650/141435555-cb6a088c-27f3-48d1-af4e-25dac413040d.jpg)
+![image](https://user-images.githubusercontent.com/59308650/141435556-0729ee31-f771-4b3d-a743-838a1d35b624.jpg)
 
 ## Features:
 - most accurate distance/time tracking available
