@@ -8,6 +8,8 @@ Track your sport activities with RunTracker using the GPS in your Android phone.
 ![image](https://user-images.githubusercontent.com/59308650/141435555-cb6a088c-27f3-48d1-af4e-25dac413040d.jpg)
 ![image](https://user-images.githubusercontent.com/59308650/141435556-0729ee31-f771-4b3d-a743-838a1d35b624.jpg)
 
+<a href='https://play.google.com/store/apps><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='100'/></a>
+
 ## Features:
 - most accurate distance/time tracking available
 - running GPS
