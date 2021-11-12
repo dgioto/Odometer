@@ -14,7 +14,8 @@ The app starts with the Start screen that has only one button:
 Start button, if GPS is enabled;
 Enable GPS button, if GPS is disabled.
 
-## MIT License
+## License
+MIT License
 
 Copyright (c) 2021 dgioto
 
