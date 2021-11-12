@@ -1,6 +1,7 @@
 # Odometer
 
 A simple open source run tracker for Android.
+
 Track your sport activities with RunTracker using the GPS in your Android phone.
 
 ## Features:
