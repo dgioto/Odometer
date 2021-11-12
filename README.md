@@ -1,4 +1,4 @@
-# Odometer
+# RunTracker
 
 A simple open source run tracker for Android.
 
