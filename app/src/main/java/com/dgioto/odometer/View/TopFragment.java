@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -32,14 +31,11 @@ import com.dgioto.odometer.MainActivity;
 import com.dgioto.odometer.Service.NotificationService;
 import com.dgioto.odometer.Service.OdometerService;
 import com.dgioto.odometer.R;
+import com.dgioto.odometer.Stopwatch;
 
 import java.util.Locale;
 
 public class TopFragment extends Fragment implements View.OnClickListener {
-
-    //STOPWATCH
-    private int seconds = 0;
-    private boolean running;
 
     //ODOMETER
     private OdometerService odometer;
@@ -47,11 +43,12 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     private final int PERMISSION_REQUEST_CODE = 698;
     private final int NOTIFICATION_ID = 423;
 
-    private MainActivity mainActivity;
-    private View layout;
+    //STOPWATCH
+    private Stopwatch stopWatch;
+
+    private final MainActivity mainActivity;
     private TextView distanceView, timeView;
     private Button startButton, noteButton, dischargeButton;
-    private LinearLayout view;
 
     public  TopFragment(MainActivity _mainActivity){
         this.mainActivity = _mainActivity;
@@ -87,19 +84,21 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         }
 
         //STOPWATCH
+        stopWatch = new Stopwatch();
         if (savedInstanceState != null){
-            seconds = savedInstanceState.getInt("seconds");
-            running = savedInstanceState.getBoolean("running");
+            stopWatch.seconds = savedInstanceState.getInt("seconds");
+            stopWatch.running = savedInstanceState.getBoolean("running");
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        layout = inflater.inflate(R.layout.fragment_top, container, false);
+        View layout = inflater.inflate(R.layout.fragment_top, container, false);
         distanceView = layout.findViewById(R.id.distance);
 
-        runTimer(layout);
+        timeView = layout.findViewById(R.id.time);
+        stopWatch.runTimer(timeView);
 
         startButton = layout.findViewById(R.id.start);
         startButton.setOnClickListener(this);
@@ -117,7 +116,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         if (!mainActivity.statusOfGPS){
             AlertDialog statusOfGPSDialog = new AlertDialog.Builder(mainActivity).create();
             statusOfGPSDialog.setTitle(R.string.gps);
-            view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_status_of_gps, null);
+            LinearLayout view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_status_of_gps, null);
             statusOfGPSDialog.setView(view);
             statusOfGPSDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     (dialog, which) -> dialog.dismiss());
@@ -133,8 +132,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
             displayDistance();
 
             //STOPWATCH
-            running = true;
-            seconds = 0;
+            stopWatch.running = true;
+            stopWatch.seconds = 0;
 
             startNotificationService();
         }
@@ -157,8 +156,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         odometer.resetDistance();
 
         //STOPWATCH
-        running = false;
-        seconds = 0;
+        stopWatch.running = false;
+        stopWatch.seconds = 0;
     }
 
     private void startNotificationService(){
@@ -204,8 +203,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putInt("seconds", seconds);
-        savedInstanceState.putBoolean("running", running);
+        savedInstanceState.putInt("seconds", stopWatch.seconds);
+        savedInstanceState.putBoolean("running", stopWatch.running);
     }
 
     @Override
@@ -219,7 +218,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
     //ODOMETER
     private void displayDistance(){
-        //создаем объект Handler
+
         final Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
@@ -236,26 +235,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         });
     }
 
-    //STOPWATCH
-    private void runTimer(View view){
-        timeView = view.findViewById(R.id.time);
 
-        final Handler handler = new Handler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                int hours = seconds / 3600;
-                int minutes = (seconds % 3600) / 60;
-                int secs = seconds % 60;
-                String time = String.format(Locale.getDefault(),
-                        "%d:%02d:%02d", hours, minutes, secs);
-                timeView.setText(time);
-                if(running) seconds++;
-
-                handler.postDelayed(this, 1000);
-            }
-        });
-    }
 
     @Override
     public void onClick(View view) {
