@@ -1,7 +1,5 @@
 package com.dgioto.odometer.View;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -28,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dgioto.odometer.MainActivity;
+import com.dgioto.odometer.Odometer;
 import com.dgioto.odometer.Service.NotificationService;
 import com.dgioto.odometer.Service.OdometerService;
 import com.dgioto.odometer.R;
@@ -38,8 +37,8 @@ import java.util.Locale;
 public class TopFragment extends Fragment implements View.OnClickListener {
 
     //ODOMETER
-    private OdometerService odometer;
-    private boolean bound = false;
+    private Odometer odometer;
+    private OdometerService odometerService;
     private final int PERMISSION_REQUEST_CODE = 698;
     private final int NOTIFICATION_ID = 423;
 
@@ -59,12 +58,12 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder binder) {
             OdometerService.OdometerBinder odometerBinder = (OdometerService.OdometerBinder) binder;
-            odometer = odometerBinder.getOdometer();
-            bound = true;
+            odometerService = odometerBinder.getOdometer();
+            odometer.bound = true;
         }
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            bound = false;
+            odometer.bound = false;
         }
     };
 
@@ -73,7 +72,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         //ODOMETER
-        odometer = new OdometerService();
+        odometer = new Odometer();
+        odometerService = new OdometerService();
         if (ContextCompat.checkSelfPermission(mainActivity, OdometerService.PERMISSION_STRING)
                 != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(mainActivity, new String[]{OdometerService.PERMISSION_STRING},
@@ -85,16 +85,13 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
         //STOPWATCH
         stopWatch = new Stopwatch();
-        if (savedInstanceState != null){
-            stopWatch.seconds = savedInstanceState.getInt("seconds");
-            stopWatch.running = savedInstanceState.getBoolean("running");
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_top, container, false);
+
         distanceView = layout.findViewById(R.id.distance);
 
         timeView = layout.findViewById(R.id.time);
@@ -127,9 +124,9 @@ public class TopFragment extends Fragment implements View.OnClickListener {
             startButton.setText(R.string.restart);
 
             //ODOMETER
-            odometer.resetDistance();
-            bound = true;
-            displayDistance();
+            odometerService.resetDistance();
+            odometer.bound = true;
+            odometer.displayDistance(distanceView, odometerService);
 
             //STOPWATCH
             stopWatch.running = true;
@@ -152,8 +149,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         startButton.setText(R.string.start);
 
         //ODOMETER
-        bound = false;
-        odometer.resetDistance();
+        odometer.bound = false;
+        odometerService.resetDistance();
 
         //STOPWATCH
         stopWatch.running = false;
@@ -167,7 +164,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     }
 
     //ODOMETER
-    //если у пользователя запрашивалось разрешение во время выполнения, проверить результат
+    //when permission was requested at runtime, check the result
     @Override
     public void onRequestPermissionsResult(int requestCode
             , @NonNull String[] permissions
@@ -178,7 +175,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Intent intent = new Intent(mainActivity, OdometerService.class);
-                odometer.bindService(intent, connection, Context.BIND_AUTO_CREATE);
+                odometerService.bindService(intent, connection, Context.BIND_AUTO_CREATE);
             } else {
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(mainActivity)
                         .setSmallIcon(android.R.drawable.ic_menu_compass)
@@ -193,49 +190,20 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                 builder.setContentIntent(actionPendingIntent);
 
                 NotificationManager notificationManager =
-                        (NotificationManager) odometer.getSystemService(Context.NOTIFICATION_SERVICE);
+                        (NotificationManager) odometerService.getSystemService(Context.NOTIFICATION_SERVICE);
                 notificationManager.notify(NOTIFICATION_ID, builder.build());
             }
         }
     }
 
-    //STOPWATCH
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putInt("seconds", stopWatch.seconds);
-        savedInstanceState.putBoolean("running", stopWatch.running);
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (bound){
-            odometer.unbindService(connection);
-            bound = false;
+        if (odometer.bound){
+            odometerService.unbindService(connection);
+            odometer.bound = false;
         }
     }
-
-    //ODOMETER
-    private void displayDistance(){
-
-        final Handler handler = new Handler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                double distance = 0.0;
-                if (bound && odometer != null){
-                    distance = odometer.getDistance();
-                }
-                String distanceStr = String.format(Locale.getDefault(),
-                        "%1$,.0f m", distance);
-                distanceView.setText(distanceStr);
-                handler.postDelayed(this, 1000);
-            }
-        });
-    }
-
-
 
     @Override
     public void onClick(View view) {
