@@ -23,4 +23,5 @@
     <string name="gps">GPS aus</string>
     <string name="notification">Verfolgen Sie Ihr Training</string>
     <string name="restart">neu starten</string>
+    <string name="night_theme">Nacht-Modus</string>
 </resources>

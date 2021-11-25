@@ -23,4 +23,5 @@
     <string name="gps">GPS выключен</string>
     <string name="notification">Отслеживание вашей тренировки</string>
     <string name="restart">Рестарт</string>
+    <string name="night_theme">Ночной режим</string>
 </resources>

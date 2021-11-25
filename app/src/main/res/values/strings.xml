@@ -30,5 +30,6 @@
     <string name="turn_on_gps">Turn on the GPS!</string>
     <string name="gps">GPS off</string>
     <string name="notification">Tracking your workout</string>
+    <string name="night_theme">Night mode</string>
 
 </resources>
