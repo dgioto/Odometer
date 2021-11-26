@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
          if (item.getItemId() == R.id.night_theme) {
 //                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             }
-         if (item.getItemId() == R.id.about) {
+         else if (item.getItemId() == R.id.about) {
                 AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
                 aboutDialog.setTitle(R.string.about);
                 LinearLayout view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_about, null);
