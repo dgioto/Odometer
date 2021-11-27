@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundColor2"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -22,6 +23,11 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?attr/backgroundColor2"
+            app:tabIconTint="?attr/button_color"
+            app:tabIndicatorColor="?attr/button_color"
+            app:tabRippleColor="?attr/button_color"
+            app:tabTextColor="?attr/text_color_secondary"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.appbar.AppBarLayout>

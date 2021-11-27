@@ -11,15 +11,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
+
         <service
             android:name=".Service.NotificationService"
             android:exported="false" />
-
-        <activity
-            android:name=".View.EditActivity"
-            android:label="@string/note"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Odometer" />
 
         <service
             android:name=".Service.OdometerService"
@@ -37,6 +32,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".View.EditActivity"
+            android:label="@string/note"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Odometer" />
+
     </application>
 
 </manifest>

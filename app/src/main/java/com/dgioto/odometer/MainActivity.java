@@ -3,7 +3,6 @@ package com.dgioto.odometer;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -55,10 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-         if (item.getItemId() == R.id.night_theme) {
-//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            }
-         else if (item.getItemId() == R.id.about) {
+         if (item.getItemId() == R.id.about) {
                 AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
                 aboutDialog.setTitle(R.string.about);
                 LinearLayout view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_about, null);
