@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_gray_50"
+    android:background="?attr/backgroundColor"
     tools:context=".View.EditActivity">
 
     <include
@@ -76,6 +76,8 @@
         android:onClick="onClickSave"
         android:text="@string/save"
         android:textSize="24sp"
+        android:textColor="?attr/text_color"
+        android:backgroundTint="?attr/button_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idTimes" />
