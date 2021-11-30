@@ -37,7 +37,6 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     private Odometer odometer;
     private OdometerService odometerService;
     private final int PERMISSION_REQUEST_CODE = 698;
-    private final int NOTIFICATION_ID = 423;
 
     //STOPWATCH
     private Stopwatch stopWatch;
@@ -188,6 +187,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
                 NotificationManager notificationManager =
                         (NotificationManager) odometerService.getSystemService(Context.NOTIFICATION_SERVICE);
+                int NOTIFICATION_ID = 423;
                 notificationManager.notify(NOTIFICATION_ID, builder.build());
             }
         }
