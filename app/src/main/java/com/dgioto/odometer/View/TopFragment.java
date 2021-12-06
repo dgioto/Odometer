@@ -30,6 +30,11 @@ import com.dgioto.odometer.Service.NotificationService;
 import com.dgioto.odometer.Service.OdometerService;
 import com.dgioto.odometer.R;
 import com.dgioto.odometer.model.Stopwatch;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class TopFragment extends Fragment implements View.OnClickListener {
 
@@ -99,6 +104,12 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         noteButton.setOnClickListener(this);
         dischargeButton = layout.findViewById(R.id.discharge);
         dischargeButton.setOnClickListener(this);
+
+        //add a Google AdMob
+        MobileAds.initialize(mainActivity, initializationStatus -> { });
+        AdView mAdView = layout.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         return layout;
     }
