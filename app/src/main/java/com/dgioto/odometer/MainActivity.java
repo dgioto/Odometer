@@ -24,7 +24,7 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
 
     //app version
-    private final String appVersion = "1.02";
+    private final String appVersion = "1.2";
 
     public LocationManager manager;
     public boolean statusOfGPS;
