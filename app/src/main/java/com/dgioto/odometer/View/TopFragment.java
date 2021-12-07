@@ -30,6 +30,13 @@ import com.dgioto.odometer.Service.NotificationService;
 import com.dgioto.odometer.Service.OdometerService;
 import com.dgioto.odometer.R;
 import com.dgioto.odometer.model.Stopwatch;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class TopFragment extends Fragment implements View.OnClickListener {
 
@@ -99,6 +106,40 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         noteButton.setOnClickListener(this);
         dischargeButton = layout.findViewById(R.id.discharge);
         dischargeButton.setOnClickListener(this);
+
+        //add a Google AdMob
+        MobileAds.initialize(mainActivity, initializationStatus -> { });
+        AdView mAdView = layout.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+            }
+
+            @Override
+            public void onAdFailedToLoad(LoadAdError adError) {
+                // Code to be executed when an ad request fails.
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+
+            @Override
+            public void onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+        });
 
         return layout;
     }
