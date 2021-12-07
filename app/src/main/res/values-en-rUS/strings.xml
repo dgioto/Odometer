@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="start">Start</string>
+    <string name="restart">Restart</string>
+    <string name="save">Save</string>
+    <string name="discharge">Discharge</string>
+    <string name="stop">Stop</string>
+    <string name="exit">Exit</string>
+    <string name="distance_tab">Distance</string>
+    <string name="history_tab">History</string>
+    <string name="saved">Saved!</string>
+    <string name="title">Title</string>
+    <string name="jogging">Jogging_</string>
+    <string name="times">Times</string>
+    <string name="disc">Description</string>
+    <string name="note">Note</string>
+    <string name="about">About</string>
+    <string name="about_message">Main Features:
+        \n- most accurate distance/time tracking available
+        \n- running GPS
+        \n- run log: run history tracking</string>
+    <string name="version">Version:</string>
+    <string name="turn_on_gps">Turn on the GPS!</string>
+    <string name="gps">GPS off</string>
+    <string name="notification">Tracking your workout</string>
+    <string name="night_theme">Night mode</string>
+</resources>
