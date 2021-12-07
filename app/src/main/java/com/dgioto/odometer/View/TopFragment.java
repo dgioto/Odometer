@@ -52,6 +52,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
     private TextView distanceView, timeView;
     private Button startButton, noteButton, dischargeButton;
 
+    private AdView mAdView;
+
     public  TopFragment(MainActivity _mainActivity){
         this.mainActivity = _mainActivity;
     }
@@ -108,8 +110,15 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         dischargeButton.setOnClickListener(this);
 
         //add a Google AdMob
+        mAdView = layout.findViewById(R.id.adView);
+        addGoogleAdmob();
+
+        return layout;
+    }
+
+    private void addGoogleAdmob(){
+
         MobileAds.initialize(mainActivity, initializationStatus -> { });
-        AdView mAdView = layout.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdListener() {
@@ -140,8 +149,6 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                 // to the app after tapping on an ad.
             }
         });
-
-        return layout;
     }
 
     private void onClickStart(){
