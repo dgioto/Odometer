@@ -9,7 +9,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
@@ -65,6 +67,12 @@ public class MainActivity extends AppCompatActivity {
                         (dialog, which) -> dialog.dismiss());
                 aboutDialog.show();
                 return true;
+        }
+        if (item.getItemId() == R.id.privacy_policy) {
+            Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+            intent.putExtra(SearchManager.QUERY, "dgioto.github.io/runtracker_privacypolicy");
+            startActivity(intent);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

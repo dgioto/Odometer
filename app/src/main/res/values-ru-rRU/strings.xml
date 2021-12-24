@@ -24,4 +24,5 @@
     <string name="notification">Отслеживание вашей тренировки</string>
     <string name="restart">Рестарт</string>
     <string name="night_theme">Ночной режим</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
 </resources>
