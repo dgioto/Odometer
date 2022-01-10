@@ -72,8 +72,9 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         odometerService = new OdometerService();
         if (ContextCompat.checkSelfPermission(mainActivity, OdometerService.PERMISSION_STRING)
                 != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(mainActivity, new String[]{OdometerService.PERMISSION_STRING},
-                    PERMISSION_REQUEST_CODE);
+
+            addLocationDialog();
+
         } else {
             Intent intent = new Intent(mainActivity, OdometerService.class);
             mainActivity.bindService(intent, connection, Context.BIND_AUTO_CREATE);
@@ -81,6 +82,27 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
         //STOPWATCH
         stopWatch = new Stopwatch();
+    }
+
+    private void addLocationDialog() {
+        androidx.appcompat.app.AlertDialog locationDialog =
+                new androidx.appcompat.app.AlertDialog.Builder(mainActivity).create();
+        locationDialog.setTitle(R.string.location);
+        locationDialog.setCancelable(false);
+        LinearLayout view_location = (LinearLayout)
+                getLayoutInflater().inflate(R.layout.dialog_location, null);
+        locationDialog.setView(view_location);
+        locationDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE,
+                "Yes",
+                (dialog, which) -> {
+                    ActivityCompat.requestPermissions(mainActivity,
+                            new String[]{OdometerService.PERMISSION_STRING},
+                            PERMISSION_REQUEST_CODE);
+                });
+        locationDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE,
+                "No",
+                (dialog, which) -> dialog.dismiss());
+        locationDialog.show();
     }
 
     @Override
@@ -109,7 +131,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         if (!mainActivity.statusOfGPS){
             AlertDialog statusOfGPSDialog = new AlertDialog.Builder(mainActivity).create();
             statusOfGPSDialog.setTitle(R.string.gps);
-            LinearLayout view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_status_of_gps, null);
+            LinearLayout view = (LinearLayout)
+                    getLayoutInflater().inflate(R.layout.dialog_status_of_gps, null);
             statusOfGPSDialog.setView(view);
             statusOfGPSDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     (dialog, which) -> dialog.dismiss());
@@ -155,7 +178,8 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
     private void startNotificationService(){
         Intent intent = new Intent(mainActivity, NotificationService.class);
-        intent.putExtra(NotificationService.EXTRA_MESSAGE, getResources().getString(R.string.notification));
+        intent.putExtra(NotificationService.EXTRA_MESSAGE,
+                getResources().getString(R.string.notification));
         mainActivity.startService(intent);
     }
 

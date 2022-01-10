@@ -25,4 +25,9 @@
     <string name="notification">Tracking your workout</string>
     <string name="night_theme">Night mode</string>
     <string name="privacy_policy">Privacy Policy</string>
+    <string name="location">Location access</string>
+    <string name="location_message">Run Tracker app needs data access
+         about the location of the device so that the application can track the distance traveled
+         and route in active and background modes. Without this, the application will not work correctly.
+         You can change this resolution in the device settings</string>
 </resources>

@@ -25,4 +25,9 @@
     <string name="restart">neu starten</string>
     <string name="night_theme">Nacht-Modus</string>
     <string name="privacy_policy">Datenschutz-Bestimmungen</string>
+    <string name="location">Standortzugriff</string>
+    <string name="location_message">Run Tracker-App benötigt Datenzugriff
+         über den Standort des Geräts, damit die Anwendung die zurückgelegte Entfernung verfolgen kann
+         und Route im aktiven und im Hintergrundmodus. Ohne dies funktioniert die Anwendung nicht richtig.
+         Sie können diese Auflösung in den Geräteeinstellungen ändern</string>
 </resources>
