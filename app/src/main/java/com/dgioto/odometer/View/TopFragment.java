@@ -70,40 +70,12 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         //ODOMETER
         odometer = new Odometer();
         odometerService = new OdometerService();
-        if (ContextCompat.checkSelfPermission(mainActivity, OdometerService.PERMISSION_STRING)
-                != PackageManager.PERMISSION_GRANTED){
-
-            addLocationDialog();
-
-        } else {
-            Intent intent = new Intent(mainActivity, OdometerService.class);
-            mainActivity.bindService(intent, connection, Context.BIND_AUTO_CREATE);
-        }
 
         //STOPWATCH
         stopWatch = new Stopwatch();
     }
 
-    private void addLocationDialog() {
-        androidx.appcompat.app.AlertDialog locationDialog =
-                new androidx.appcompat.app.AlertDialog.Builder(mainActivity).create();
-        locationDialog.setTitle(R.string.location);
-        locationDialog.setCancelable(false);
-        LinearLayout view_location = (LinearLayout)
-                getLayoutInflater().inflate(R.layout.dialog_location, null);
-        locationDialog.setView(view_location);
-        locationDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE,
-                "Yes",
-                (dialog, which) -> {
-                    ActivityCompat.requestPermissions(mainActivity,
-                            new String[]{OdometerService.PERMISSION_STRING},
-                            PERMISSION_REQUEST_CODE);
-                });
-        locationDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE,
-                "No",
-                (dialog, which) -> dialog.dismiss());
-        locationDialog.show();
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -127,32 +99,64 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
     private void onClickStart(){
 
-        mainActivity.managerGPS();
-        if (!mainActivity.statusOfGPS){
-            AlertDialog statusOfGPSDialog = new AlertDialog.Builder(mainActivity).create();
-            statusOfGPSDialog.setTitle(R.string.gps);
-            LinearLayout view = (LinearLayout)
-                    getLayoutInflater().inflate(R.layout.dialog_status_of_gps, null);
-            statusOfGPSDialog.setView(view);
-            statusOfGPSDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    (dialog, which) -> dialog.dismiss());
-            statusOfGPSDialog.show();
+        if (ContextCompat.checkSelfPermission(mainActivity, OdometerService.PERMISSION_STRING)
+                != PackageManager.PERMISSION_GRANTED){
+
+            addLocationDialog();
+
         } else {
-            noteButton.setVisibility(View.VISIBLE);
-            dischargeButton.setVisibility(View.VISIBLE);
-            startButton.setText(R.string.restart);
+            Intent intent = new Intent(mainActivity, OdometerService.class);
+            mainActivity.bindService(intent, connection, Context.BIND_AUTO_CREATE);
 
-            //ODOMETER
-            odometerService.resetDistance();
-            odometer.bound = true;
-            odometer.displayDistance(distanceView, odometerService);
+            mainActivity.managerGPS();
+            if (!mainActivity.statusOfGPS){
+                AlertDialog statusOfGPSDialog = new AlertDialog.Builder(mainActivity).create();
+                statusOfGPSDialog.setTitle(R.string.gps);
+                LinearLayout view = (LinearLayout)
+                        getLayoutInflater().inflate(R.layout.dialog_status_of_gps, null);
+                statusOfGPSDialog.setView(view);
+                statusOfGPSDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        (dialog, which) -> dialog.dismiss());
+                statusOfGPSDialog.show();
+            } else {
+                noteButton.setVisibility(View.VISIBLE);
+                dischargeButton.setVisibility(View.VISIBLE);
+                startButton.setText(R.string.restart);
 
-            //STOPWATCH
-            stopWatch.running = true;
-            stopWatch.seconds = 0;
+                //ODOMETER
+                odometerService.resetDistance();
+                odometer.bound = true;
+                odometer.displayDistance(distanceView, odometerService);
 
-            startNotificationService();
+                //STOPWATCH
+                stopWatch.running = true;
+                stopWatch.seconds = 0;
+
+                startNotificationService();
+            }
+
         }
+    }
+
+    private void addLocationDialog() {
+        androidx.appcompat.app.AlertDialog locationDialog =
+                new androidx.appcompat.app.AlertDialog.Builder(mainActivity).create();
+        locationDialog.setTitle(R.string.location);
+        locationDialog.setCancelable(false);
+        LinearLayout view_location = (LinearLayout)
+                getLayoutInflater().inflate(R.layout.dialog_location, null);
+        locationDialog.setView(view_location);
+        locationDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE,
+                "Yes",
+                (dialog, which) -> {
+                    ActivityCompat.requestPermissions(mainActivity,
+                            new String[]{OdometerService.PERMISSION_STRING},
+                            PERMISSION_REQUEST_CODE);
+                });
+        locationDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE,
+                "No",
+                (dialog, which) -> dialog.dismiss());
+        locationDialog.show();
     }
 
     private void onClickNote(){
