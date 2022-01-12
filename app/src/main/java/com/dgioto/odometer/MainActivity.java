@@ -25,9 +25,6 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    //app version
-    private final String appVersion = "1.3";
-
     public LocationManager manager;
     public boolean statusOfGPS;
 
@@ -57,15 +54,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
          if (item.getItemId() == R.id.about) {
-                AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
-                aboutDialog.setTitle(R.string.about);
-                LinearLayout view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_about, null);
-                aboutDialog.setView(view);
-                TextView version = view.findViewById(R.id.version);
-                version.setText(appVersion);
-                aboutDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        (dialog, which) -> dialog.dismiss());
-                aboutDialog.show();
+             AlertDialog aboutDialog = new AlertDialog.Builder(MainActivity.this).create();
+             aboutDialog.setTitle(R.string.about);
+             LinearLayout view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_about, null);
+             aboutDialog.setView(view);
+             TextView version = view.findViewById(R.id.version);
+             int appVersion = R.string.app_version;
+             version.setText(appVersion);
+             aboutDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                     (dialog, which) -> dialog.dismiss());
+             aboutDialog.show();
                 return true;
         }
         if (item.getItemId() == R.id.privacy_policy) {
