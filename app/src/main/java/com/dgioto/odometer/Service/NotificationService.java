@@ -2,11 +2,10 @@ package com.dgioto.odometer.Service;
 
 import android.annotation.SuppressLint;
 import android.app.IntentService;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-
-import androidx.core.app.NotificationCompat;
 
 import com.dgioto.odometer.MainActivity;
 import com.dgioto.odometer.R;
@@ -34,10 +33,10 @@ public class NotificationService extends IntentService {
     }
 
     private void showText(final String text) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+        Notification.Builder builder = new Notification.Builder(this)
                 .setSmallIcon(R.drawable.ic_baseline_directions_run_24)
                 .setContentText(text)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                .setPriority(Notification.PRIORITY_DEFAULT);
 
         Intent actionIntent = new Intent(this, MainActivity.class);
         @SuppressLint("UnspecifiedImmutableFlag") PendingIntent actionPendingIntent = PendingIntent.getActivity(
