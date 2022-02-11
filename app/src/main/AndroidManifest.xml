@@ -14,16 +14,16 @@
         android:supportsRtl="true">
 
         <service
-            android:name=".Service.NotificationService"
+            android:name=".presenter.Service.NotificationService"
             android:exported="false" />
 
         <service
-            android:name=".Service.OdometerService"
+            android:name=".presenter.Service.OdometerService"
             android:enabled="true"
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"
             android:theme="@style/Theme.Odometer">

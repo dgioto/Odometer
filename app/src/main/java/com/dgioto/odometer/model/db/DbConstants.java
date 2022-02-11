@@ -1,4 +1,4 @@
-package com.dgioto.odometer.db;
+package com.dgioto.odometer.model.db;
 
 public class DbConstants {
     public static final String EDIT_STATE = "edit_state";

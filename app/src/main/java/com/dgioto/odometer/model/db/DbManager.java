@@ -1,11 +1,11 @@
-package com.dgioto.odometer.db;
+package com.dgioto.odometer.model.db;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.dgioto.odometer.adapter.ListItem;
+import com.dgioto.odometer.View.adapter.ListItem;
 
 import java.util.ArrayList;
 import java.util.List;

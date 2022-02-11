@@ -1,9 +1,9 @@
-package com.dgioto.odometer.model;
+package com.dgioto.odometer.presenter;
 
 import android.os.Handler;
 import android.widget.TextView;
 
-import com.dgioto.odometer.Service.OdometerService;
+import com.dgioto.odometer.presenter.Service.OdometerService;
 
 import java.util.Locale;
 

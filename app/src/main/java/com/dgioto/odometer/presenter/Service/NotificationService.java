@@ -1,4 +1,4 @@
-package com.dgioto.odometer.Service;
+package com.dgioto.odometer.presenter.Service;
 
 import android.annotation.SuppressLint;
 import android.app.IntentService;
@@ -7,7 +7,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 
-import com.dgioto.odometer.MainActivity;
+import com.dgioto.odometer.View.MainActivity;
 import com.dgioto.odometer.R;
 
 public class NotificationService extends IntentService {

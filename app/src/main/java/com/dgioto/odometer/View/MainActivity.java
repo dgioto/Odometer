@@ -1,4 +1,4 @@
-package com.dgioto.odometer;
+package com.dgioto.odometer.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -19,8 +19,8 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.dgioto.odometer.View.HistoryFragment;
-import com.dgioto.odometer.View.TopFragment;
+import com.dgioto.odometer.BuildConfig;
+import com.dgioto.odometer.R;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.dgioto.odometer.adapter;
+package com.dgioto.odometer.View.adapter;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.dgioto.odometer.model;
+package com.dgioto.odometer.presenter;
 
 import android.os.Handler;
 import android.widget.TextView;

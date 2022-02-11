@@ -11,10 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dgioto.odometer.MainActivity;
 import com.dgioto.odometer.R;
-import com.dgioto.odometer.adapter.MainAdapter;
-import com.dgioto.odometer.db.DbManager;
+import com.dgioto.odometer.View.adapter.MainAdapter;
+import com.dgioto.odometer.model.db.DbManager;
 
 public class HistoryFragment extends Fragment{
 

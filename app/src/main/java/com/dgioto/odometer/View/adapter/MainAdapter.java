@@ -1,4 +1,4 @@
-package com.dgioto.odometer.adapter;
+package com.dgioto.odometer.View.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dgioto.odometer.View.EditActivity;
 import com.dgioto.odometer.R;
-import com.dgioto.odometer.db.DbConstants;
-import com.dgioto.odometer.db.DbManager;
+import com.dgioto.odometer.model.db.DbConstants;
+import com.dgioto.odometer.model.db.DbManager;
 
 import java.util.ArrayList;
 import java.util.List;

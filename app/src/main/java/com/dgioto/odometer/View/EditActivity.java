@@ -10,9 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dgioto.odometer.R;
-import com.dgioto.odometer.adapter.ListItem;
-import com.dgioto.odometer.db.DbConstants;
-import com.dgioto.odometer.db.DbManager;
+import com.dgioto.odometer.View.adapter.ListItem;
+import com.dgioto.odometer.model.db.DbConstants;
+import com.dgioto.odometer.model.db.DbManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
