@@ -208,10 +208,10 @@ public class TopFragment extends Fragment implements View.OnClickListener {
                         .setAutoCancel(true);
 
                 Intent actionIntent = new Intent(mainActivity, MainActivity.class);
-                @SuppressLint("UnspecifiedImmutableFlag") PendingIntent actionPendingIntent = PendingIntent.getActivity(mainActivity,
+                PendingIntent actionPendingIntent = PendingIntent.getActivity(mainActivity,
                         0,
                         actionIntent,
-                        PendingIntent.FLAG_CANCEL_CURRENT);
+                        PendingIntent.FLAG_MUTABLE);
                 builder.setContentIntent(actionPendingIntent);
 
                 NotificationManager notificationManager =
