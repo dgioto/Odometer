@@ -27,10 +27,10 @@ import android.widget.TextView;
 
 import com.dgioto.odometer.MainActivity;
 import com.dgioto.odometer.model.Odometer;
+import com.dgioto.odometer.model.Stopwatch;
 import com.dgioto.odometer.Service.NotificationService;
 import com.dgioto.odometer.Service.OdometerService;
 import com.dgioto.odometer.R;
-import com.dgioto.odometer.model.Stopwatch;
 
 public class TopFragment extends Fragment implements View.OnClickListener {
 
