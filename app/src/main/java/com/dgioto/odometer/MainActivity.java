@@ -6,8 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import com.dgioto.odometer.View.HistoryFragment;
 import com.dgioto.odometer.View.TopFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,12 +39,21 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         SectionsPagerAdapter pagerAdapter =
-                new SectionsPagerAdapter(getSupportFragmentManager(), this);
-        ViewPager pager = findViewById(R.id.pager);
+                new SectionsPagerAdapter(getSupportFragmentManager(), getLifecycle(), this);
+        ViewPager2 pager = findViewById(R.id.pager);
         pager.setAdapter(pagerAdapter);
 
         TabLayout tabLayout = findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(pager);
+        new TabLayoutMediator(tabLayout, pager, (tab, position) -> {
+            switch (position) {
+                case 0:
+                    tab.setText(getResources().getText(R.string.distance_tab));
+                    break;
+                case 1:
+                    tab.setText(getResources().getText(R.string.history_tab));
+                    break;
+            }
+        }).attach();
     }
 
     @Override
@@ -81,41 +92,29 @@ public class MainActivity extends AppCompatActivity {
         statusOfGPS = manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 
-    private class SectionsPagerAdapter extends FragmentPagerAdapter {
+    private static class SectionsPagerAdapter extends FragmentStateAdapter {
 
         private final MainActivity mA;
 
-        public SectionsPagerAdapter(FragmentManager fm, MainActivity _mA) {
-            super(fm);
+        public SectionsPagerAdapter(FragmentManager fragmentManager, Lifecycle lifecycle, MainActivity _mA) {
+            super(fragmentManager, lifecycle);
             this.mA = _mA;
         }
 
-        @NonNull
         @Override
-        public Fragment getItem(int position) {
-            switch (position){
-                case  0:
-                    return  new TopFragment(mA);
-                case  1:
+        public Fragment createFragment(int position) {
+            switch (position) {
+                case 0:
+                    return new TopFragment(mA);
+                case 1:
                     return new HistoryFragment(mA);
             }
             return null;
         }
 
         @Override
-        public int getCount() {
+        public int getItemCount() {
             return 2;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position){
-                case 0:
-                    return getResources().getText(R.string.distance_tab);
-                case 1:
-                    return getResources().getText(R.string.history_tab);
-            }
-            return null;
         }
     }
 }
