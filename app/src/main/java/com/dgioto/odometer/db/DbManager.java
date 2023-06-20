@@ -1,5 +1,6 @@
 package com.dgioto.odometer.db;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -51,10 +52,10 @@ public class DbManager {
 
         while (cursor.moveToNext()){
             ListItem item = new ListItem();
-            String title = cursor.getString(cursor.getColumnIndex(DbConstants.TITLE));
-            String meters = cursor.getString(cursor.getColumnIndex(DbConstants.METERS));
-            String times = cursor.getString(cursor.getColumnIndex(DbConstants.TIMES));
-            int _id = cursor.getInt(cursor.getColumnIndex(DbConstants._ID));
+            @SuppressLint("Range") String title = cursor.getString(cursor.getColumnIndex(DbConstants.TITLE));
+            @SuppressLint("Range") String meters = cursor.getString(cursor.getColumnIndex(DbConstants.METERS));
+            @SuppressLint("Range") String times = cursor.getString(cursor.getColumnIndex(DbConstants.TIMES));
+            @SuppressLint("Range") int _id = cursor.getInt(cursor.getColumnIndex(DbConstants._ID));
             item.setTitle(title);
             item.setMeters(meters);
             item.setTimes(times);
