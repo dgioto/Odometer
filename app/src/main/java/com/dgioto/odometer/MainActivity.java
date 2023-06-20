@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
+        @NonNull
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     return new HistoryFragment(mA);
             }
-            return null;
+            throw new IllegalArgumentException("Invalid position: " + position);
         }
 
         @Override
