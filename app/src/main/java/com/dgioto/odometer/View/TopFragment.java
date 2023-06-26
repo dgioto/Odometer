@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.dgioto.odometer.MainActivity;
 import com.dgioto.odometer.Service.OdometerService;
 import com.dgioto.odometer.R;
 
@@ -21,14 +20,14 @@ public class TopFragment extends Fragment implements View.OnClickListener, TopFr
 
     private OdometerService odometerService;
 
-    private final MainActivity mainActivity;
+    private final Context context;
     private TopFragmentContract.Presenter presenter;
 
     public TextView distanceView, timeView;
     public Button startButton, noteButton, dischargeButton;
 
-    public  TopFragment(MainActivity _mainActivity){
-        this.mainActivity = _mainActivity;
+    public TopFragment(Context context) {
+        this.context = context;
     }
 
     @Override
@@ -65,7 +64,7 @@ public class TopFragment extends Fragment implements View.OnClickListener, TopFr
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        presenter = new TopFragmentPresenter(this, mainActivity);
+        presenter = new TopFragmentPresenter(this, context);
         odometerService = new OdometerService();
     }
 

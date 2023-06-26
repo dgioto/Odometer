@@ -45,9 +45,9 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
     private int seconds = 0;
     private boolean running;
 
-    public TopFragmentPresenter(TopFragmentContract.View topFragment, MainActivity mainActivity) {
+    public TopFragmentPresenter(TopFragmentContract.View topFragment, Context context) {
         this.topFragment = topFragment;
-        this.context = mainActivity;
+        this.context = context;
 
         odometerService = new OdometerService();
     }

@@ -11,6 +11,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -84,11 +85,11 @@ public class MainActivity extends AppCompatActivity {
 
     private static class SectionsPagerAdapter extends FragmentStateAdapter {
 
-        private final MainActivity mA;
+        private final Context context;
 
-        public SectionsPagerAdapter(FragmentManager fragmentManager, Lifecycle lifecycle, MainActivity _mA) {
+        public SectionsPagerAdapter(FragmentManager fragmentManager, Lifecycle lifecycle, Context context) {
             super(fragmentManager, lifecycle);
-            this.mA = _mA;
+            this.context = context;
         }
 
         @Override
@@ -96,9 +97,9 @@ public class MainActivity extends AppCompatActivity {
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
-                    return new TopFragment(mA);
+                    return new TopFragment(context);
                 case 1:
-                    return new HistoryFragment(mA);
+                    return new HistoryFragment(context);
             }
             throw new IllegalArgumentException("Invalid position: " + position);
         }

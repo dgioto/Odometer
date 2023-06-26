@@ -1,5 +1,6 @@
 package com.dgioto.odometer.View;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -11,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.dgioto.odometer.MainActivity;
 import com.dgioto.odometer.R;
 import com.dgioto.odometer.adapter.MainAdapter;
 import com.dgioto.odometer.db.DbManager;
@@ -19,12 +19,12 @@ import com.dgioto.odometer.db.DbManager;
 public class HistoryFragment extends Fragment{
 
     private MainAdapter mainAdapter;
-    private final MainActivity mainActivity;
+    private final Context context;
     private View layout;
     private DbManager dbManager;
 
-    public HistoryFragment(MainActivity _mainActivity){
-        this.mainActivity = _mainActivity;
+    public HistoryFragment(Context context) {
+        this.context = context;
     }
 
     @Override
@@ -41,11 +41,11 @@ public class HistoryFragment extends Fragment{
     }
 
     private void init() {
-        dbManager = new DbManager(mainActivity);
+        dbManager = new DbManager(context);
         RecyclerView rcView = layout.findViewById(R.id.rcView);
-        mainAdapter = new MainAdapter(mainActivity, dbManager);
+        mainAdapter = new MainAdapter(context, dbManager);
 
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(mainActivity);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(context);
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
         rcView.setLayoutManager(mLayoutManager);
