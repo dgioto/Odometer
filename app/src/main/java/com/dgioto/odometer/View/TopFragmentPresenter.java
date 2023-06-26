@@ -129,9 +129,11 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
 
             mainActivity.managerGPS();
             if (!mainActivity.statusOfGPS){
-                AlertDialog statusOfGPSDialog = new AlertDialog.Builder(mainActivity).create();
+                Context context = topFragment.getContext();
+                androidx.appcompat.app.AlertDialog statusOfGPSDialog =
+                        new androidx.appcompat.app.AlertDialog.Builder(context).create();
                 statusOfGPSDialog.setTitle(R.string.gps);
-                LayoutInflater inflater = LayoutInflater.from(((View) topFragment).getContext());
+                LayoutInflater inflater = LayoutInflater.from(topFragment.getContext());
                 LinearLayout view = (LinearLayout) inflater.inflate(R.layout.dialog_status_of_gps, null);
                 statusOfGPSDialog.setView(view);
                 statusOfGPSDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -188,11 +190,12 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
 
     @Override
     public void addLocationDialog() {
+        Context context = topFragment.getContext();
         androidx.appcompat.app.AlertDialog locationDialog =
-                new androidx.appcompat.app.AlertDialog.Builder(mainActivity).create();
+                new androidx.appcompat.app.AlertDialog.Builder(context).create();
         locationDialog.setTitle(R.string.location);
         locationDialog.setCancelable(false);
-        LayoutInflater inflater = LayoutInflater.from(((View) topFragment).getContext());
+        LayoutInflater inflater = LayoutInflater.from(topFragment.getContext());
         LinearLayout view_location = (LinearLayout) inflater.inflate(R.layout.dialog_location, null);
         locationDialog.setView(view_location);
         locationDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE,

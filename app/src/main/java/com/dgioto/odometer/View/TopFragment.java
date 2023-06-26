@@ -1,6 +1,7 @@
 package com.dgioto.odometer.View;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,11 @@ public class TopFragment extends Fragment implements View.OnClickListener, TopFr
 
     public  TopFragment(MainActivity _mainActivity){
         this.mainActivity = _mainActivity;
+    }
+
+    @Override
+    public Context getContext() {
+        return getActivity();
     }
 
     @Override

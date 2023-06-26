@@ -1,5 +1,6 @@
 package com.dgioto.odometer.View;
 
+import android.content.Context;
 import android.content.ServiceConnection;
 import android.widget.Button;
 import android.widget.TextView;
@@ -7,6 +8,8 @@ import android.widget.TextView;
 public interface TopFragmentContract {
 
     interface View {
+
+        Context getContext();
 
         TextView getDistanceView();
 
@@ -39,6 +42,4 @@ public interface TopFragmentContract {
 
         void onRequestPermissionsResultToPresenter(int requestCode, String[] permissions, int[] grantResults);
     }
-
-
 }
