@@ -24,11 +24,11 @@ public interface TopFragmentContract {
 
     interface Presenter {
 
+        ServiceConnection getConnection();
+
         boolean getBound();
 
         void setBound(boolean bound);
-
-        ServiceConnection getConnection();
 
         void runTimer(TextView timeView);
 

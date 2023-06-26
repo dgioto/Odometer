@@ -11,9 +11,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,9 +24,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
-
-    public LocationManager manager;
-    public boolean statusOfGPS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,11 +80,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void managerGPS(){
-        manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        statusOfGPS = manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 
     private static class SectionsPagerAdapter extends FragmentStateAdapter {

@@ -1,5 +1,6 @@
 package com.dgioto.odometer.View;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Handler;
 import android.os.IBinder;
 import android.view.LayoutInflater;
@@ -28,8 +30,11 @@ import java.util.Locale;
 
 public class TopFragmentPresenter implements TopFragmentContract.Presenter {
 
-    private final MainActivity mainActivity;
     private final TopFragmentContract.View topFragment;
+    private final Context context;
+
+    public LocationManager manager;
+    public boolean statusOfGPS;
 
     //ODOMETER
     public boolean bound = false;
@@ -42,7 +47,7 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
 
     public TopFragmentPresenter(TopFragmentContract.View topFragment, MainActivity mainActivity) {
         this.topFragment = topFragment;
-        this.mainActivity = mainActivity;
+        this.context = mainActivity;
 
         odometerService = new OdometerService();
     }
@@ -100,6 +105,11 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
         });
     }
 
+    public void managerGPS(){
+        manager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        statusOfGPS = manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+    }
+
     @Override
     public boolean getBound() {
         return bound;
@@ -118,17 +128,17 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
     @Override
     public void onClickStart() {
 
-        if (ContextCompat.checkSelfPermission(mainActivity, OdometerService.PERMISSION_STRING)
+        if (ContextCompat.checkSelfPermission(context, OdometerService.PERMISSION_STRING)
                 != PackageManager.PERMISSION_GRANTED){
 
             addLocationDialog();
 
         } else {
-            Intent intent = new Intent(mainActivity, OdometerService.class);
-            mainActivity.bindService(intent, connection, Context.BIND_AUTO_CREATE);
+            Intent intent = new Intent(context, OdometerService.class);
+            context.bindService(intent, connection, Context.BIND_AUTO_CREATE);
 
-            mainActivity.managerGPS();
-            if (!mainActivity.statusOfGPS){
+            managerGPS();
+            if (!statusOfGPS){
                 Context context = topFragment.getContext();
                 androidx.appcompat.app.AlertDialog statusOfGPSDialog =
                         new androidx.appcompat.app.AlertDialog.Builder(context).create();
@@ -159,18 +169,18 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
     }
 
     private void startNotificationService(){
-        Intent intent = new Intent(mainActivity, NotificationService.class);
+        Intent intent = new Intent(context, NotificationService.class);
         intent.putExtra(NotificationService.EXTRA_MESSAGE,
-                mainActivity.getResources().getString(R.string.notification));
-        mainActivity.startService(intent);
+                context.getResources().getString(R.string.notification));
+        context.startService(intent);
     }
 
     @Override
     public void onClickNote() {
-        Intent intent = new Intent(mainActivity, EditActivity.class);
+        Intent intent = new Intent(context, EditActivity.class);
         intent.putExtra("distanceView", topFragment.getDistanceView().getText().toString());
         intent.putExtra("timeView", topFragment.getTimeView().getText().toString());
-        mainActivity.startActivity(intent);
+        context.startActivity(intent);
     }
 
     @Override
@@ -200,7 +210,7 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
         locationDialog.setView(view_location);
         locationDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE,
                 "Yes",
-                (dialog, which) -> ActivityCompat.requestPermissions(mainActivity,
+                (dialog, which) -> ActivityCompat.requestPermissions((Activity) context,
                         new String[]{OdometerService.PERMISSION_STRING},
                         PERMISSION_REQUEST_CODE));
         locationDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE,
@@ -215,18 +225,18 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Intent intent = new Intent(mainActivity, OdometerService.class);
+                Intent intent = new Intent(context, OdometerService.class);
                 odometerService.bindService(intent, connection, Context.BIND_AUTO_CREATE);
             } else {
-                Notification.Builder builder = new Notification.Builder(mainActivity)
+                Notification.Builder builder = new Notification.Builder(context)
                         .setSmallIcon(android.R.drawable.ic_menu_compass)
-                        .setContentTitle(mainActivity.getResources().getString(R.string.app_name))
-                        .setContentText(mainActivity.getResources().getString(R.string.permission_denied))
+                        .setContentTitle(context.getResources().getString(R.string.app_name))
+                        .setContentText(context.getResources().getString(R.string.permission_denied))
                         .setPriority(Notification.PRIORITY_DEFAULT)
                         .setAutoCancel(true);
 
-                Intent actionIntent = new Intent(mainActivity, MainActivity.class);
-                PendingIntent actionPendingIntent = PendingIntent.getActivity(mainActivity,
+                Intent actionIntent = new Intent(context, MainActivity.class);
+                PendingIntent actionPendingIntent = PendingIntent.getActivity(context,
                         0,
                         actionIntent,
                         PendingIntent.FLAG_MUTABLE);
