@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (item.getItemId() == R.id.privacy_policy) {
             Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-            intent.putExtra(SearchManager.QUERY, "dgioto.github.io/runtracker_privacypolicy");
+            intent.putExtra(SearchManager.QUERY, R.string.runtracker_privacypolicy);
             startActivity(intent);
             return true;
         }

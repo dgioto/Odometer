@@ -37,5 +37,6 @@
         о местоположении устройства, чтобы приложение могло отслеживать пройденное растояние
         и маршрут в активном и фоновом режимах. Без этого приложение будет работать не коректно.
         Вы можете изменить это разрешение в настройках устройства</string>
+    <string name="runtracker_privacypolicy" translatable="false">dgioto.github.io/runtracker_privacypolicy</string>
 
 </resources>
