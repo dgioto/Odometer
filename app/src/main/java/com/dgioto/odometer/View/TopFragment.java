@@ -13,12 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.dgioto.odometer.Service.OdometerService;
 import com.dgioto.odometer.R;
 
 public class TopFragment extends Fragment implements View.OnClickListener, TopFragmentContract.View {
-
-    private OdometerService odometerService;
 
     private final Context context;
     private TopFragmentContract.Presenter presenter;
@@ -34,6 +31,8 @@ public class TopFragment extends Fragment implements View.OnClickListener, TopFr
     public Context getContext() {
         return getActivity();
     }
+
+
 
     @Override
     public TextView getDistanceView() {
@@ -65,7 +64,6 @@ public class TopFragment extends Fragment implements View.OnClickListener, TopFr
         super.onCreate(savedInstanceState);
 
         presenter = new TopFragmentPresenter(this, context);
-        odometerService = new OdometerService();
     }
 
     @Override
@@ -101,7 +99,7 @@ public class TopFragment extends Fragment implements View.OnClickListener, TopFr
     public void onDestroy() {
         super.onDestroy();
         if (presenter.getBound()){
-            odometerService.unbindService(presenter.getConnection());
+            presenter.getOdometerService().unbindService(presenter.getConnection());
             presenter.setBound(false);
         }
     }

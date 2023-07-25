@@ -126,6 +126,11 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
     }
 
     @Override
+    public OdometerService getOdometerService() {
+        return odometerService;
+    }
+
+    @Override
     public void onClickStart() {
 
         if (ContextCompat.checkSelfPermission(context, OdometerService.PERMISSION_STRING)

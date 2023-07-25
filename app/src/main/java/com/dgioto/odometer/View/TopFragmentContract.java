@@ -5,6 +5,8 @@ import android.content.ServiceConnection;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.dgioto.odometer.Service.OdometerService;
+
 public interface TopFragmentContract {
 
     interface View {
@@ -25,6 +27,8 @@ public interface TopFragmentContract {
     interface Presenter {
 
         ServiceConnection getConnection();
+
+        OdometerService getOdometerService();
 
         boolean getBound();
 
