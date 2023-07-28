@@ -6,8 +6,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 
-import com.dgioto.odometer.MainActivity;
 import com.dgioto.odometer.R;
+import com.dgioto.odometer.View.TopFragmentPresenter;
 
 public class NotificationService extends IntentService {
 
@@ -37,7 +37,7 @@ public class NotificationService extends IntentService {
                 .setContentText(text)
                 .setPriority(Notification.PRIORITY_DEFAULT);
 
-        Intent actionIntent = new Intent(this, MainActivity.class);
+        Intent actionIntent = new Intent(this, TopFragmentPresenter.class);
         PendingIntent actionPendingIntent = PendingIntent.getActivity(
                 this,
                 0,
