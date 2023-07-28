@@ -1,52 +1,51 @@
 package com.dgioto.odometer.Service;
 
-import android.app.IntentService;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.work.Worker;
+import androidx.work.WorkerParameters;
 
 import com.dgioto.odometer.R;
 import com.dgioto.odometer.View.TopFragmentPresenter;
 
-public class NotificationService extends IntentService {
+public class NotificationService extends Worker {
 
     public static final String EXTRA_MESSAGE = "message";
     public static final int NOTIFICATION_ID = 5453;
 
-    public NotificationService() {
-        super("NotificationService");
+    public NotificationService(@NonNull Context context, @NonNull WorkerParameters workerParams) {
+        super(context, workerParams);
     }
 
+    @NonNull
     @Override
-    protected void onHandleIntent(Intent intent) {
-        synchronized (this) {
-            try {
-                wait(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        String text = intent.getStringExtra(EXTRA_MESSAGE);
+    public Result doWork() {
+        String text = getInputData().getString(EXTRA_MESSAGE);
         showText(text);
+        return Result.success();
     }
 
     private void showText(final String text) {
-        Notification.Builder builder = new Notification.Builder(this)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "channel_id")
                 .setSmallIcon(R.drawable.ic_baseline_directions_run_24)
                 .setContentText(text)
-                .setPriority(Notification.PRIORITY_DEFAULT);
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-        Intent actionIntent = new Intent(this, TopFragmentPresenter.class);
+        Intent actionIntent = new Intent(getApplicationContext(), TopFragmentPresenter.class);
         PendingIntent actionPendingIntent = PendingIntent.getActivity(
-                this,
+                getApplicationContext(),
                 0,
                 actionIntent,
                 PendingIntent.FLAG_MUTABLE);
         builder.setContentIntent(actionPendingIntent);
 
         NotificationManager notificationManager =
-                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
 }
