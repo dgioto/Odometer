@@ -1,51 +1,70 @@
 package com.dgioto.odometer.Service;
 
+import android.Manifest;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
+import android.app.Service;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.IBinder;
 
-import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
-import androidx.work.Worker;
-import androidx.work.WorkerParameters;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.dgioto.odometer.R;
 import com.dgioto.odometer.View.TopFragmentPresenter;
 
-public class NotificationService extends Worker {
+public class NotificationService extends Service {
 
     public static final String EXTRA_MESSAGE = "message";
     public static final int NOTIFICATION_ID = 5453;
 
-    public NotificationService(@NonNull Context context, @NonNull WorkerParameters workerParams) {
-        super(context, workerParams);
-    }
-
-    @NonNull
     @Override
-    public Result doWork() {
-        String text = getInputData().getString(EXTRA_MESSAGE);
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        String text = intent.getStringExtra(EXTRA_MESSAGE);
         showText(text);
-        return Result.success();
+        return START_STICKY;
     }
 
     private void showText(final String text) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "channel_id")
-                .setSmallIcon(R.drawable.ic_baseline_directions_run_24)
-                .setContentText(text)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-        Intent actionIntent = new Intent(getApplicationContext(), TopFragmentPresenter.class);
+        Intent actionIntent = new Intent(this, TopFragmentPresenter.class);
         PendingIntent actionPendingIntent = PendingIntent.getActivity(
-                getApplicationContext(),
+                this,
                 0,
                 actionIntent,
                 PendingIntent.FLAG_MUTABLE);
-        builder.setContentIntent(actionPendingIntent);
 
-        NotificationManager notificationManager =
-                (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(NOTIFICATION_ID, builder.build());
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel_id")
+                .setSmallIcon(R.drawable.ic_baseline_directions_run_24)
+                .setContentText(text)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(actionPendingIntent);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    "channel_id",
+                    "Foreground Service Channel",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            ((NotificationManager) getSystemService(NOTIFICATION_SERVICE)).createNotificationChannel(channel);
+            startForeground(NOTIFICATION_ID, builder.build());
+        } else {
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+            if (notificationManager.areNotificationsEnabled()) {
+                if (ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED) {
+                    notificationManager.notify(NOTIFICATION_ID, builder.build());
+                }
+            }
+        }
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 }

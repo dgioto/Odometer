@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.view.LayoutInflater;
@@ -20,9 +21,6 @@ import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.work.Data;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkManager;
 
 import com.dgioto.odometer.MainActivity;
 import com.dgioto.odometer.R;
@@ -177,18 +175,14 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
     }
 
     private void startNotificationService(){
-        //a Data object is created to transfer data to a background task and add a string value
-        Data data = new Data.Builder()
-                .putString(NotificationService.EXTRA_MESSAGE,
-                        context.getResources().getString(R.string.notification))
-                .build();
-        
-        //request to execute a one-time background task
-        OneTimeWorkRequest notificationWork = new OneTimeWorkRequest.Builder(NotificationService.class)
-                .setInputData(data)
-                .build();
-        //used by the WorkManager to schedule and run the notificationWork background task
-        WorkManager.getInstance(context).enqueue(notificationWork);
+        Intent intent = new Intent(context, NotificationService.class);
+        intent.putExtra(NotificationService.EXTRA_MESSAGE,
+                context.getResources().getString(R.string.notification));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
     }
 
     @Override
