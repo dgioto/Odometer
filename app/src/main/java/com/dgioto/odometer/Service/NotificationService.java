@@ -8,7 +8,9 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
@@ -21,11 +23,16 @@ public class NotificationService extends Service {
 
     public static final String EXTRA_MESSAGE = "message";
     public static final int NOTIFICATION_ID = 5453;
+    private static final int DELAY_IN_MILLISECONDS = 2000;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         String text = intent.getStringExtra(EXTRA_MESSAGE);
-        showText(text);
+
+        // Trigger a delay before displaying a notification
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(() -> showText(text), DELAY_IN_MILLISECONDS);
+
         return START_STICKY;
     }
 
