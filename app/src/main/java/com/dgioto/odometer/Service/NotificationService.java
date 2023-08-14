@@ -16,8 +16,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.dgioto.odometer.MainActivity;
 import com.dgioto.odometer.R;
-import com.dgioto.odometer.View.TopFragmentPresenter;
 
 public class NotificationService extends Service {
 
@@ -37,12 +37,12 @@ public class NotificationService extends Service {
     }
 
     private void showText(final String text) {
-        Intent actionIntent = new Intent(this, TopFragmentPresenter.class);
+        Intent actionIntent = new Intent(this, MainActivity.class);
         PendingIntent actionPendingIntent = PendingIntent.getActivity(
                 this,
                 0,
                 actionIntent,
-                PendingIntent.FLAG_MUTABLE);
+                PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel_id")
                 .setSmallIcon(R.drawable.ic_baseline_directions_run_24)
