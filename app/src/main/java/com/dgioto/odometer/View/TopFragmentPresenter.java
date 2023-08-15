@@ -23,6 +23,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.dgioto.odometer.MainActivity;
+import com.dgioto.odometer.Model;
 import com.dgioto.odometer.R;
 import com.dgioto.odometer.Service.NotificationService;
 import com.dgioto.odometer.Service.OdometerService;
@@ -33,24 +34,17 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
 
     private final TopFragmentContract.View topFragment;
     private final Context context;
-
     public LocationManager manager;
     public boolean statusOfGPS;
-
-    //ODOMETER
-    public boolean bound = false;
-    private OdometerService odometerService;
     private final int PERMISSION_REQUEST_CODE = 698;
-
-    //STOPWATCH
-    private int seconds = 0;
-    private boolean running;
+    private OdometerService odometerService;
+    private final Model model;
 
     public TopFragmentPresenter(TopFragmentContract.View topFragment, Context context) {
         this.topFragment = topFragment;
         this.context = context;
-
         odometerService = new OdometerService();
+        model = new Model();
     }
 
     //ODOMETER
@@ -59,11 +53,11 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
         public void onServiceConnected(ComponentName componentName, IBinder binder) {
             OdometerService.OdometerBinder odometerBinder = (OdometerService.OdometerBinder) binder;
             odometerService = odometerBinder.getOdometer();
-            bound = true;
+            model.setBound(true);
         }
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            bound = false;
+            model.setBound(false);
         }
     };
 
@@ -75,7 +69,7 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
             @Override
             public void run() {
                 double distance = 0.0;
-                if (bound && odometerService != null){
+                if (model.isBound() && odometerService != null){
                     distance = odometerService.getDistance();
                 }
                 String distanceStr = String.format(Locale.getDefault(),
@@ -93,13 +87,13 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                int hours = seconds / 3600;
-                int minutes = (seconds % 3600) / 60;
-                int secs = seconds % 60;
+                int hours = model.getSeconds() / 3600;
+                int minutes = (model.getSeconds() % 3600) / 60;
+                int secs = model.getSeconds() % 60;
                 String time = String.format(Locale.getDefault(),
                         "%d:%02d:%02d", hours, minutes, secs);
                 timeView.setText(time);
-                if(running) seconds++;
+                if(model.isRunning()) model.setSeconds(model.getSeconds() + 1);
 
                 handler.postDelayed(this, 1000);
             }
@@ -113,12 +107,12 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
 
     @Override
     public boolean getBound() {
-        return bound;
+        return model.isBound();
     }
 
     @Override
     public void setBound(boolean bound) {
-        this.bound = bound;
+        model.setBound(bound);
     }
 
     @Override
@@ -162,12 +156,12 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
 
                 //ODOMETER
                 odometerService.resetDistance();
-                bound = true;
+                model.setBound(true);
                 displayDistance(topFragment.getDistanceView(), odometerService);
 
                 //STOPWATCH
-                running = true;
-                seconds = 0;
+                model.setRunning(true);
+                model.setSeconds(0);
 
                 startNotificationService();
             }
@@ -200,12 +194,12 @@ public class TopFragmentPresenter implements TopFragmentContract.Presenter {
         topFragment.getStartButton().setText(R.string.start);
 
         //ODOMETER
-        bound = false;
+        model.setBound(false);
         odometerService.resetDistance();
 
         //STOPWATCH
-        running = false;
-        seconds = 0;
+        model.setRunning(false);
+        model.setSeconds(0);
     }
 
     @Override
