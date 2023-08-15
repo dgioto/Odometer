@@ -30,4 +30,5 @@
          über den Standort des Geräts, damit die Anwendung die zurückgelegte Entfernung verfolgen kann
          und Route im aktiven und im Hintergrundmodus. Ohne dies funktioniert die Anwendung nicht richtig.
          Sie können diese Auflösung in den Geräteeinstellungen ändern</string>
+    <string name="close">Schließen</string>
 </resources>
