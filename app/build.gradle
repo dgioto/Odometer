@@ -8,10 +8,10 @@ android {
 
     defaultConfig {
         applicationId "com.dgioto.odometer"
-        minSdkVersion 20
+        minSdkVersion 22
         targetSdkVersion 33
-        versionCode 5
-        versionName "1.5"
+        versionCode 6
+        versionName "1.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
