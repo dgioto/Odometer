@@ -8,6 +8,9 @@ Track your sport activities with RunTracker using the GPS in your Android phone.
 ![image](https://user-images.githubusercontent.com/59308650/141435555-cb6a088c-27f3-48d1-af4e-25dac413040d.jpg)
 ![image](https://user-images.githubusercontent.com/59308650/141435556-0729ee31-f771-4b3d-a743-838a1d35b624.jpg)
 
+## Link to google play market:
+[https://play.google.com/store/apps/details?id=com.dgioto.beatbox&hl=ru&gl=US](https://play.google.com/store/apps/details?id=com.dgioto.odometer&hl=ru&gl=US)
+
 ## Features:
 - most accurate distance/time tracking available
 - running GPS
