@@ -23,14 +23,16 @@ public class TopFragment extends Fragment implements View.OnClickListener, TopFr
     public TextView distanceView, timeView;
     public Button startButton, noteButton, dischargeButton;
 
-    public TopFragment( ) {
-        this.context = getContext();
+    public TopFragment(Context context) {
+        this.context = context;
     }
 
     @Override
     public Context getContext() {
         return getActivity();
     }
+
+
 
     @Override
     public TextView getDistanceView() {

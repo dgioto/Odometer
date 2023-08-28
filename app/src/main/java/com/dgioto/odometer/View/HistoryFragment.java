@@ -23,8 +23,8 @@ public class HistoryFragment extends Fragment{
     private View layout;
     private DbManager dbManager;
 
-    public HistoryFragment( ) {
-        this.context = getContext();
+    public HistoryFragment(Context context) {
+        this.context = context;
     }
 
     @Override
