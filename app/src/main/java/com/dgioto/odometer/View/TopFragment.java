@@ -32,8 +32,6 @@ public class TopFragment extends Fragment implements View.OnClickListener, TopFr
         return getActivity();
     }
 
-
-
     @Override
     public TextView getDistanceView() {
         return distanceView;
